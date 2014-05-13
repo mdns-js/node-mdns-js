@@ -4,16 +4,15 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "chromecast": "~0.0.4",
-    "dial": "~0.0.4",
-    "nodecastor": "~0.1.4"
+    "debug": "~0.8.1"
   },
   "devDependencies": {
-    "mocha": "~1.18.2"
+    "mocha": "~1.18.2",
+    "should": "~3.3.1"
   },
   "scripts": {
     "test": "mocha"
   },
   "author": "",
-  "license": "BSD-2-Clause"
+  "license": "Apache"
 }
