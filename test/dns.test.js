@@ -25,6 +25,7 @@ describe('DNSPacket', function () {
         var buf = new Buffer(packets.responses.linux_workstation, 'hex');
         var packet = dns.DNSPacket.parse(buf);
         packet.each('an', 12, function (rec) {
+            should.exist(rec); //really no risk but jshint complains about unused should;
             var ptr = rec.asName();
             ptr.should.be.instanceof(String);
         }.bind(this));
