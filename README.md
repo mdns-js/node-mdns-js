@@ -1,6 +1,11 @@
-zeroconfjs
+mDNS-js
 ==========
 
-Pure JavaScript mDNS discovery implementation
+Pure JavaScript/NodeJS mDNS discovery implementation
+
+
+Install by
+
+    npm install mdns-js
 
 

@@ -1,5 +1,5 @@
 {
-  "name": "zeroconfjs",
+  "name": "mdns-js",
   "version": "0.0.0",
   "description": "",
   "main": "index.js",
@@ -12,8 +12,9 @@
     "jshint": "~2.5.0"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "lint": "jshint lib test index.js"
   },
-  "author": "",
+  "author": "Peter Magnusson <peter@birchroad.net>",
   "license": "Apache"
 }

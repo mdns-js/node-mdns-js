@@ -1,4 +1,7 @@
 {
+    "node": true,
 	"expr": true,
-	"unused": true
+	"unused": true,
+    "quotmark": true,
+    "undef": true
 }

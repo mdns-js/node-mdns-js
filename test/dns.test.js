@@ -1,29 +1,25 @@
 
+/*global describe: true, it: true */
 var should = require('should');
-var dns = require('../lib/dns');
+var DNSPacket = require('../lib/dnspacket');
+var DNSRecord = require('../lib/dnsrecord');
 
 var packets = require('./packets.json');
 
 
 
 describe('DNSPacket', function () {
-    it.skip('.toBuffer should give same bytes as .serialize', function (done) {
-        var packet = new dns.DNSPacket();
-        packet.push('qd', new dns.DNSRecord('_services._dns-sd._udp.local', 12, 1));
-        var raw = packet.serialize();
+    it('should convert packet to buffer with .toBuffer()', function (done) {
+        var packet = new DNSPacket();
+        packet.push('qd', new DNSRecord('_services._dns-sd._udp.local', 12, 1));        
         var buf = packet.toBuffer();
-
-        raw.byteLength.should.equal(buf.length);
-        for (var i = 0; i<raw.byteLength; i++) {
-            buf[i].should.equal(raw[i], 'Missmatch in byte ' + i.toString());
-        }
         buf.toString('hex').should.equal(packets.queries.services);
         done();
     });
 
-    it('.parse', function () {
+    it('should read packet with .parse()', function () {
         var buf = new Buffer(packets.responses.linux_workstation, 'hex');
-        var packet = dns.DNSPacket.parse(buf);
+        var packet = DNSPacket.parse(buf);
         packet.each('an', 12, function (rec) {
             should.exist(rec); //really no risk but jshint complains about unused should;
             var ptr = rec.asName();
