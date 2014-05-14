@@ -28,7 +28,14 @@ describe('mDNS', function () {
     it('shoud .discover()', function (done) {   
         mdns.once('update', function () {
             mdns._byService.should.have.property('_workstation._tcp');
-            console.log('services', mdns._byService);
+            var hosts = mdns.ips('_workstation._tcp');
+            hosts.should.be.instanceof(Array);
+            hosts.length.should.be.above(0);
+
+            var services = mdns.services();
+            services.should.be.instanceof(Array);
+            services.length.should.be.above(0);
+
             done();
         });
         setTimeout(mdns.discover.bind(mdns),500);

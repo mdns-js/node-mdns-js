@@ -1,6 +1,6 @@
 {
   "name": "mdns-js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": {
     "type": "git",
     "url": "git://github.com/kmpm/node-mdns-js.git"
@@ -22,7 +22,7 @@
   },
   "scripts": {
     "test": "mocha",
-    "lint": "jshint lib test index.js"
+    "lint": "jshint lib test examples index.js"
   },
   "author": {
     "name": "Peter Magnusson",
