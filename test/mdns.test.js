@@ -21,11 +21,8 @@ describe('mDNS', function () {
         mdns.shutdown();
     });
 
-    it('should automatically create new Mdns', function () {
-        
-    });
 
-    it('shoud .discover()', function (done) {   
+    it('should .discover()', function (done) {   
         mdns.once('update', function () {
             mdns._byService.should.have.property('_workstation._tcp');
             var hosts = mdns.ips('_workstation._tcp');
@@ -40,4 +37,10 @@ describe('mDNS', function () {
         });
         setTimeout(mdns.discover.bind(mdns),500);
     });
+
+    it('should close unused', function (done) {
+        mdns.closeUnused();
+        setTimeout(done, 500);
+    });
+    
 });
