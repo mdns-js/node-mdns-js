@@ -25,9 +25,7 @@ describe('mDNS', function () {
     it('should .discover()', function (done) {   
         mdns.once('update', function () {
             //mdns._byService.should.have.property('_workstation._tcp');
-            debug('_asIP', mdns._byIP);
-            debug('_byService', mdns._byService);
-
+            
             var hosts = mdns.ips('_workstation._tcp');
             hosts.should.be.instanceof(Array);
             hosts.length.should.be.above(0);
