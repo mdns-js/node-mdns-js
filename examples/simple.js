@@ -1,13 +1,16 @@
-var Mdns = require('../');
+var mdns = require('../');
 
-var mdns = new Mdns();
+// var browser = new mdns.Mdns(mdns.tcp("googlecast"));
+// console.log(mdns.ServiceType.wildcard);
+var browser = new mdns.Mdns(mdns.ServiceType.wildcard);
 
-mdns.on('ready', function () {
-    mdns.discover();
+browser.on('ready', function () {
+  browser.discover(); 
 });
 
-mdns.on('update', function () {
-    console.log('ips with _workstation._tcp service', mdns.ips('_workstation._tcp')); 
-    console.log('services on host 10.100.0.61', mdns.services('10.100.0.61'));
+browser.on('update', function (data) {
+    console.log('device address', data.addresses[0]); 
+    console.log('device name', data.name);
+    console.log('service name', data.type);
     mdns.shutdown();
 });
