@@ -29,17 +29,29 @@ describe('mDNS', function () {
             var hosts = mdns.ips('_workstation._tcp');
             hosts.should.be.instanceof(Array);
             hosts.length.should.be.above(0);
+
             var services = mdns.services();
             services.should.be.instanceof(Array);
             services.length.should.be.above(0);
-
-            var missing = mdns.ips('this should not exist');
-            missing.should.be.instanceof(Array);
-            missing.length.should.equal(0);
-
             done();
         });
         setTimeout(mdns.discover.bind(mdns),500);
+    });
+
+    
+    it('should not crash on missing service when listing ips', function (done) {
+        var missing = mdns.ips('this service should not exist');
+        missing.should.be.instanceof(Array);
+        missing.length.should.equal(0);
+        done();
+    });    
+
+
+    it('should not crash on missing host when listing services', function (done) {
+        var missing = mdns.services('this ip should not exist');
+        missing.should.be.instanceof(Array);
+        missing.length.should.equal(0);
+        done();
     });
 
     it('should close unused', function (done) {

@@ -17,7 +17,8 @@ Future
 It would be great to have a full implementation of mDSN + DNS-SD in pure JS but
 progress will be slow unless someone is willing to pitch in with
 pull requests, specifications for wanted functions etc.
-
+Also, as you should avoid to have multiple mDNS stacks on a system this
+might clash with stuff like avahi and bonjour.
 
 
 example
