@@ -46,5 +46,13 @@ describe('mDNS', function () {
         mdns.closeUnused();
         setTimeout(done, 500);
     });
+
+    describe.skip('advertisements', function () {
+        it('createAdvertisement', function (done) {
+            var ad = mdns.createAdvertisement(Mdns.tcp('http'), 4242);
+            should.exist(ad);
+            done();
+        });
+    });
     
 });
