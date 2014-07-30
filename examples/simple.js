@@ -1,8 +1,9 @@
 var mdns = require('../');
 
 // var browser = new mdns.Mdns(mdns.tcp("googlecast"));
-// console.log(mdns.ServiceType.wildcard);
-var browser = new mdns.Mdns(mdns.tcp('airplay'));
+// var browser = new mdns.Mdns(mdns.tcp('airplay'));
+console.log(mdns.ServiceType.wildcard);
+var browser = new mdns.Mdns(mdns.ServiceType.wildcard);
 
 browser.on('ready', function () {
   browser.discover(); 
