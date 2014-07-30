@@ -1,16 +1,21 @@
-var Mdns = require('../'); //change to mdns-js if using library as a module
+var mdns = require('../');
 
-var mdns = new Mdns();
 
-mdns.on('ready', function () {
-    mdns.discover();
+// var browser = new mdns.Mdns(mdns.tcp("googlecast"));
+// console.log(mdns.ServiceType.wildcard);
+var browser = new mdns.Mdns(mdns.ServiceType.wildcard);
+
+browser.on('ready', function () {
+    console.log('browser is ready')
+    browser.discover(); 
 });
 
-mdns.on('update', function () {
-    var workstations = mdns.ips('_workstation._tcp');
-    console.log('ips with _workstation._tcp service', workstations); 
 
-    var services = mdns.services(workstations[0]);
-    console.log('services on first workstation host %s: %s', workstations[0], services);
-    mdns.shutdown();
+browser.on('update', function (data) {
+    var device = {
+        address: data.addresses[0],
+        name: data.name,
+        servicename: data.type
+    }
+    console.log('device:', data);
 });

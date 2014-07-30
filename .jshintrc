@@ -3,5 +3,6 @@
 	"expr": true,
 	"unused": true,
     "quotmark": true,
-    "undef": true
+    "undef": true,
+    "laxcomma": true
 }
