@@ -1,5 +1,5 @@
 /*global describe: true, it: true, before: true, after: true */
-var debug = require('debug')('mdns:test');
+//var debug = require('debug')('mdns:test');
 var should = require('should');
 var Mdns = require('../');
 

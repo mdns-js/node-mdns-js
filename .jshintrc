@@ -4,5 +4,7 @@
 	"unused": true,
     "quotmark": true,
     "undef": true,
-    "laxcomma": true
+    "laxcomma": true,
+    "curly": true,
+    "eqeqeq": true
 }
