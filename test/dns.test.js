@@ -11,19 +11,64 @@ var packets = require('./packets.json');
 describe('DNSPacket', function () {
     it('should convert packet to buffer with .toBuffer()', function (done) {
         var packet = new DNSPacket();
-        packet.push('qd', new DNSRecord('_services._dns-sd._udp.local', 12, 1));        
+        packet.push('qd', new DNSRecord('_services._dns-sd._udp.local', DNSRecord.Type.PTR, 1));        
         var buf = packet.toBuffer();
         buf.toString('hex').should.equal(packets.queries.services);
         done();
     });
 
-    it('should read packet with .parse()', function () {
-        var buf = new Buffer(packets.responses.linux_workstation, 'hex');
+    it('should read service response packet with .parse()', function (done) {
+        var buf = new Buffer(packets.responses.services.linux_workstation, 'hex');
         var packet = DNSPacket.parse(buf);
-        packet.each('an', 12, function (rec) {
-            should.exist(rec); //really no risk but jshint complains about unused should;
+        packet.each('an', DNSRecord.Type.PTR, function (rec) {
             var ptr = rec.asName();
             ptr.should.be.instanceof(String);
-        }.bind(this));
+            done();
+        });
+    });
+
+    it.only('should parse a tcp workstation response', function (done) {
+        var buf = new Buffer(packets.responses.tcp_workstation[1], 'hex');
+        var packet = DNSPacket.parse(buf);
+
+        var ptrCount=0;
+        var aaaaCount=0;
+        var srvCount=0;
+        var txtCount=0;
+
+        packet.each('an', DNSRecord.Type.PTR, function (rec) {
+             rec.ttl.should.equal(10);
+             var ptr = rec.asName();
+             ptr.should.equal('vestri [28:c6:8e:34:b8:c3]')
+             ptrCount++;
+        });
+
+        packet.each('an', DNSRecord.Type.AAAA, function (rec) {
+            var aaaa = rec.asAAAA();
+            aaaa.should.equal('fe80:0:0:0:2ac6:8eff:fe34:b8c3');
+            aaaaCount++;
+        });
+
+        packet.each('an', DNSRecord.Type.SRV, function (rec) {
+            var value = rec.asSrv();
+            value.should.be.type('object');
+            value.should.have.property('priority', 0),
+            value.should.have.property('weight', 0),
+            value.should.have.property('port', 9),
+            value.should.have.property('target', 'vestri');
+            srvCount++;
+        });
+
+        packet.each('an', DNSRecord.Type.TXT, function (rec) {
+           var value = rec.asTxt();
+           value.should.be.type('object');
+           value.should.be.empty;
+
+           txtCount++;
+        });
+
+        if (ptrCount===1 && aaaaCount === 1 && txtCount === 1 && srvCount === 1) {
+            done();
+        }
     });
 });
