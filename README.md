@@ -27,15 +27,14 @@ example
 ```javascript
 var Mdns = require('mdns-js');
 
-var mdns = new Mdns();
+var browser = new mdns.createBrowser();
 
-mdns.on('ready', function () {
+browser.on('ready', function () {
     mdns.discover(); 
 });
 
-mdns.on('update', function () {
-    console.log('ips with _workstation._tcp service', mdns.ips('_workstation._tcp')); 
-    console.log('services on host 10.100.0.61', mdns.services('10.100.0.61'));
+browser.on('update', function (data) {
+    console.log('data:', data);
 });
 ```
 
