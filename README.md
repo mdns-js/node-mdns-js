@@ -42,13 +42,26 @@ browser.on('update', function (data) {
 
 Debugging
 ---------
-This library is using the [debug](https://github.com/visionmedia/debug) module from TJ Holowaychuk and can be used like this.
+This library is using the [debug](https://github.com/visionmedia/debug) 
+module from TJ Holowaychuk and can be used like this.
 
 ```bash
 DEBUG=mdns* node examples/simple.js
 ```
 
 This will spit out a lot of information that might be useful.
+
+
+Contributing
+------------
+Pull-request will be gladly accepted.
+
+If possible any api should be as close match to the api of node-mdns but
+be pragmatic. Look at issue #5.
+
+Before creating a pull-request please run jshint on any changed code.
+There is a .jshintrc file included in the project, use it, and don't 
+be offended by it.
 
 
 
