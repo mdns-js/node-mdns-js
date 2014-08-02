@@ -29,6 +29,9 @@
     "name": "Peter Magnusson",
     "email": "peter@birchroad.net"
   },
+  "contributors": [
+    "James Sigurðarson <jamiees2@gmail.com> (http://jamessigurdarson.com)"
+  ],
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/kmpm/node-mdns-js/issues"

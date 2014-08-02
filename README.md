@@ -80,3 +80,9 @@ References
 * RFC 6762 - mDNS - http://tools.ietf.org/html/rfc6762
 * RFC 6763 - DNS Based Service Discovery - http://tools.ietf.org/html/rfc6763
 * http://www.tcpipguide.com/free/t_DNSMessageHeaderandQuestionSectionFormat.htm
+
+
+Contributors
+============
+
+* James Sigurðarson, @jamiees2 
