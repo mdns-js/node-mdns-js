@@ -59,7 +59,11 @@ Pull-request will be gladly accepted.
 If possible any api should be as close match to the api of node-mdns but
 be pragmatic. Look at issue #5.
 
-Before creating a pull-request please run jshint on any changed code.
+Before creating a pull-request please run 
+
+    npm run lint 
+
+on any changed code.
 There is a .jshintrc file included in the project, use it, and don't 
 be offended by it.
 
@@ -74,7 +78,7 @@ Apache 2.0. See LICENSE file.
 References
 ==========
 
-* https://github.com/GoogleChrome/chrome-app-samples/tree/master/mdns-browser
+* https://github.com/GoogleChrome/chrome-app-samples/tree/master/samples/mdns-browser
 * http://en.wikipedia.org/wiki/Multicast_DNS
 * http://en.wikipedia.org/wiki/Zero_configuration_networking#Service_discovery
 * RFC 6762 - mDNS - http://tools.ietf.org/html/rfc6762
