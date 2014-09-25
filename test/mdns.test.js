@@ -6,41 +6,38 @@ var mdns = require('../');
 
 
 describe('mDNS', function () {
-    var browser;
-    before(function (done) {
-        should.exist(mdns, 'library does not exist!?');
-        browser = mdns.createBrowser();
+  var browser;
+  before(function (done) {
+    should.exist(mdns, 'library does not exist!?');
+    browser = mdns.createBrowser();
 
-
-        browser.on('ready', function (socketcount) {
-            socketcount.should.be.above(0);
-            done();
-        });
+    browser.on('ready', function onReady(socketcount) {
+      socketcount.should.be.above(0);
+      done();
     });
+  });
 
-    after(function () {
-        browser.stop();
+  after(function () {
+    browser.stop();
+  });
+
+
+  it('should .discover()', function (done) {
+    browser.once('update', function onUpdate(data) {
+      //mdns._byService.should.have.property('_workstation._tcp');
+      data.should.have.property('interfaceIndex');
+      data.should.have.property('networkInterface');
+      data.should.have.property('addresses');
+      data.should.have.property('query');
+      data.should.have.property('type');
+      done();
     });
+    setTimeout(browser.discover.bind(browser), 500);
+  });
 
 
-    it('should .discover()', function (done) {   
-        browser.once('update', function (data) {
-            //mdns._byService.should.have.property('_workstation._tcp');
-            data.should.have.property('interfaceIndex');
-            data.should.have.property('networkInterface');
-            data.should.have.property('addresses');
-            data.should.have.property('query');
-            data.should.have.property('type');
-        
-            done();
-        });
-        setTimeout(browser.discover.bind(browser),500);
-    });
-
-    
-    it('should close unused', function (done) {
-        browser.closeUnused();
-        setTimeout(done, 500);
-    });
-    
+  it('should close unused', function (done) {
+    browser.closeUnused();
+    setTimeout(done, 500);
+  });
 });

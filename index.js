@@ -16,14 +16,14 @@ module.exports.Browser = require('./lib/browser'); //just for convenience
  * Create a browser instance
  * @method
  * @param {string} [serviceType] - The Service type to browse for. Defaults to ServiceType.wildcard
- * @return {Browser} 
+ * @return {Browser}
  */
-module.exports.createBrowser = function (serviceType) {
-    if (typeof serviceType === 'undefined') {
-        serviceType = st.ServiceType.wildcard
-    }
-    return new module.exports.Browser(serviceType);
-}
+module.exports.createBrowser = function browserCreated(serviceType) {
+  if (typeof serviceType === 'undefined') {
+    serviceType = st.ServiceType.wildcard;
+  }
+  return new module.exports.Browser(serviceType);
+};
 
 
 

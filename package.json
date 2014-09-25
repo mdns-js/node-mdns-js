@@ -16,13 +16,14 @@
     "debug": "~0.8.1"
   },
   "devDependencies": {
+    "jscs": "^1.6.2",
+    "jshint": "*",
     "mocha": "*",
-    "should": "*",
-    "jshint": "*"
+    "should": "*"
   },
   "scripts": {
     "test": "mocha",
-    "lint": "jshint lib test examples index.js",
+    "lint": "jshint lib test examples index.js && jscs lib test examples index.js",
     "doc": "jsdoc -d .\\doc index.js lib"
   },
   "author": {
