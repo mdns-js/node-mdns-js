@@ -4,9 +4,10 @@ var should = require('should');
 var DNSPacket = require('../lib/dnspacket');
 var DNSRecord = require('../lib/dnsrecord');
 
+var decoder = require('../lib/decoder');
+
 var packets = require('./packets.json');
 
-should.exist(true);
 
 describe('DNSPacket', function () {
   it('should convert packet to buffer with .toBuffer()', function (done) {
@@ -125,5 +126,22 @@ describe('DNSPacket', function () {
     if (ptrCount === 1 && aaaaCount === 1 && txtCount === 1 && srvCount === 1) {
       done();
     }
+  });
+
+  it('lots of servicetypes', function () {
+    var buf = new Buffer(packets.responses.services.sample5, 'hex');
+    var data = decoder.decodePacket(buf);
+    data.should.have.property('addresses', []);
+    data.should.have.property('query', '_services._dns-sd._udp.local');
+    data.should.have.property('type');
+    var types = data.type;
+    types.should.have.length(4);
+    types.forEach(function (f) {
+      should.exist(f);
+      f.should.have.property('name');
+      f.should.have.property('protocol');
+      f.should.have.property('subtypes');
+      f.should.have.property('description');
+    });
   });
 });
