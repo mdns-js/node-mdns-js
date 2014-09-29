@@ -25,12 +25,12 @@ example
 -------
 
 ```javascript
-var Mdns = require('mdns-js');
+var mdns = require('mdns-js');
 
 var browser = new mdns.createBrowser();
 
 browser.on('ready', function () {
-    mdns.discover(); 
+    browser.discover(); 
 });
 
 browser.on('update', function (data) {
