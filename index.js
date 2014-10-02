@@ -27,6 +27,22 @@ module.exports.createBrowser = function browserCreated(serviceType) {
 
 
 
+/* @borrows Advertisement as Advertisement */
+module.exports.Advertisement = require('./lib/advertisement'); //just for convenience
+
+/**
+ * Create a service instance
+ * @method
+ * @param {string|ServiceType} serviceType - The service type to register
+ * @param {number} [port] - The port number for the service
+ * @param {object} [options] - ...
+ * @return {Advertisement}
+ */
+module.exports.createAdvertisement = function advertisementCreated(serviceType, port, options) {
+  return new module.exports.Advertisement(serviceType, port, options);
+};
+
+
 /** @property {module:ServiceType~ServiceType} */
 module.exports.ServiceType = st.ServiceType;
 
