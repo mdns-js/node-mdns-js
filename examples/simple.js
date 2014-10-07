@@ -17,7 +17,7 @@ browser.on('update', function onUpdate(data) {
   console.log('data:', data);
 });
 
-//stop after 60 seconds
+//stop after 5 seconds
 setTimeout(function onTimeout() {
   browser.stop();
 }, TIMEOUT);
