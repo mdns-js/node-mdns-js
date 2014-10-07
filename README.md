@@ -89,4 +89,5 @@ References
 Contributors
 ============
 
-* James Sigurðarson, @jamiees2 
+* James Sigurðarson, @jamiees2
+* Stefan Sauer, @ensonic
