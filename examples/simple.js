@@ -3,8 +3,8 @@ var mdns = require('../');
 var TIMEOUT = 5000; //5 seconds
 
 
-var browser = new mdns.createBrowser(); //defaults to mdns.ServiceType.wildcard
-//var browser = new mdns.Mdns(mdns.tcp("googlecast"));
+var browser = mdns.createBrowser(); //defaults to mdns.ServiceType.wildcard
+//var browser = mdns.createBrowser(mdns.tcp("googlecast"));
 //var browser = mdns.createBrowser(mdns.tcp("workstation"));
 
 browser.on('ready', function onReady() {

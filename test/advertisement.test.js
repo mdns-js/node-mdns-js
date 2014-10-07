@@ -3,7 +3,9 @@
 var should = require('should');
 var pf = require('../lib/packetfactory');
 var mdns = require('../');
-var DNSRecord = require('../lib/dnsrecord');
+var dns = require('mdns-js-packet');
+var DNSPacket = dns.DNSPacket;
+var DNSRecord = dns.DNSRecord;
 
 function mockAdvertisement() {
   var context = {};

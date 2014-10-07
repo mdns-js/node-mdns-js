@@ -27,7 +27,7 @@ example
 ```javascript
 var mdns = require('mdns-js');
 
-var browser = new mdns.createBrowser();
+var browser = mdns.createBrowser();
 
 browser.on('ready', function () {
     browser.discover(); 
@@ -46,7 +46,7 @@ This library is using the [debug](https://github.com/visionmedia/debug)
 module from TJ Holowaychuk and can be used like this.
 
 ```bash
-DEBUG=mdns* node examples/simple.js
+DEBUG=mdns:* node examples/simple.js
 ```
 
 This will spit out LOTS of information that might be useful.

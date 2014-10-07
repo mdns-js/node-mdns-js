@@ -13,9 +13,11 @@
   ],
   "main": "index.js",
   "dependencies": {
-    "debug": "~0.8.1"
+    "debug": "~0.8.1",
+    "mdns-js-packet": "0.0.3"
   },
   "devDependencies": {
+    "joi": "^4.8.1",
     "jscs": "^1.6.2",
     "jshint": "*",
     "mocha": "*",
