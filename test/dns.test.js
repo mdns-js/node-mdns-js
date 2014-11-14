@@ -159,5 +159,5 @@ describe('DNSPacket', function () {
     t.should.have.property('name', 'http');
     t.should.have.property('protocol', 'tcp');
     done();
-  })
+  });
 });
