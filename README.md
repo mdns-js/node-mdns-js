@@ -65,6 +65,13 @@ Pull-request will be gladly accepted.
 If possible any api should be as close match to the api of node-mdns but
 be pragmatic. Look at issue #5.
 
+Please run any existing tests with
+
+    npm test
+
+and preferably add more tests.
+
+
 Before creating a pull-request please run 
 
     npm run lint 
