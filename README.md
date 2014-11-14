@@ -49,8 +49,14 @@ module from TJ Holowaychuk and can be used like this.
 DEBUG=mdns* node examples/simple.js
 ```
 
-This will spit out a lot of information that might be useful.
+This will spit out LOTS of information that might be useful.
+If you have some issues with something where you might want
+to communicate the contents of a packet (ie create an issue on github)
+you could limit the debug information to just that.
 
+```bash
+DEBUG=mdns:browser:packet node examples/simple.js
+```
 
 Contributing
 ------------
@@ -63,10 +69,11 @@ Before creating a pull-request please run
 
     npm run lint 
 
-on any changed code.
-There is a .jshintrc file included in the project, use it, and don't 
-be offended by it.
+This will run jshint as well as jscs that will do some basic syntax
+and code style checks.
+Fix any issues befor committing and creating a pull-request.
 
+Look at the .jshintrc and .jscs.json for the details.
 
 
 License
