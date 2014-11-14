@@ -41,6 +41,7 @@ describe('DNSPacket', function () {
     var packet = DNSPacket.parse(buf);
 
     var ptrCount = 0;
+    var aCount = 0;
     var aaaaCount = 0;
     var srvCount = 0;
     var txtCount = 0;
@@ -53,34 +54,31 @@ describe('DNSPacket', function () {
       ptrCount++;
     });
 
+    packet.each('an', DNSRecord.Type.A, function (rec) {
+      rec.asA();
+      aCount++;
+    });
+
     packet.each('an', DNSRecord.Type.AAAA, function (rec) {
-      var aaaa = rec.asAAAA();
-      aaaa.should.equal('fe80:0:0:0:2ac6:8eff:fe34:b8c3');
+      rec.asAAAA();
       aaaaCount++;
     });
 
     packet.each('an', DNSRecord.Type.SRV, function (rec) {
-      var value = rec.asSrv();
-      value.should.be.type('object');
-      value.should.have.property('priority', 0),
-      value.should.have.property('weight', 0),
-      value.should.have.property('port', 9),
-      value.should.have.property('target', 'vestri');
+      rec.asSrv();
       srvCount++;
     });
 
     packet.each('an', DNSRecord.Type.TXT, function (rec) {
-      var value = rec.asTxt();
-      value.should.be.type('object');
-      value.should.be.empty;
-
+      rec.asTxt();
       txtCount++;
     });
 
     ptrCount.should.equal(4);
+    aCount.should.equal(0, 'bad A count');
     aaaaCount.should.equal(0, 'bad AAAA count');
-    txtCount.should.equal(0, 'bad TXT count');
     srvCount.should.equal(0, 'bad SRV count');
+    txtCount.should.equal(0, 'bad TXT count');
     done();
   });
 
@@ -89,6 +87,7 @@ describe('DNSPacket', function () {
     var packet = DNSPacket.parse(buf);
 
     var ptrCount = 0;
+    var aCount = 0;
     var aaaaCount = 0;
     var srvCount = 0;
     var txtCount = 0;
@@ -100,9 +99,14 @@ describe('DNSPacket', function () {
       ptrCount++;
     });
 
+    packet.each('an', DNSRecord.Type.A, function (rec) {
+      var a = rec.asA();
+      a.should.equal('10.100.0.99');
+      aCount++;
+    });
+
     packet.each('an', DNSRecord.Type.AAAA, function (rec) {
-      var aaaa = rec.asAAAA();
-      aaaa.should.equal('fe80:0:0:0:2ac6:8eff:fe34:b8c3');
+      rec.asAAAA();
       aaaaCount++;
     });
 
@@ -123,9 +127,12 @@ describe('DNSPacket', function () {
       txtCount++;
     });
 
-    if (ptrCount === 1 && aaaaCount === 1 && txtCount === 1 && srvCount === 1) {
-      done();
-    }
+    ptrCount.should.equal(1);
+    aCount.should.equal(1, 'bad A count');
+    aaaaCount.should.equal(0, 'bad AAAA count');
+    srvCount.should.equal(1, 'bad SRV count');
+    txtCount.should.equal(1, 'bad TXT count');
+    done();
   });
 
   it('lots of servicetypes', function () {
