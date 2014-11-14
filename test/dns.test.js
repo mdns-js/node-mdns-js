@@ -151,4 +151,13 @@ describe('DNSPacket', function () {
       f.should.have.property('description');
     });
   });
+
+  it('issue 11', function (done) {
+    var buf = new Buffer(packets.responses.services.issue11, 'hex');
+    var data = decoder.decodePacket(buf);
+    var t = data.type[0];
+    t.should.have.property('name', 'http');
+    t.should.have.property('protocol', 'tcp');
+    done();
+  })
 });
