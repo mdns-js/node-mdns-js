@@ -1,6 +1,6 @@
 var mdns = require('../');
 
-var service = new mdns.createAdvertisement(mdns.tcp('_http'), 9876,
+var service = mdns.createAdvertisement(mdns.tcp('_http'), 9876,
 {
   name:'hello',
   txt:{
