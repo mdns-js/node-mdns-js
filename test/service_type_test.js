@@ -72,17 +72,19 @@ describe('ServiceType', function () {
 
   it('should throw on bad protocol', function (done) {
     var throws = function () {
-      var type = new ServiceType('service._http._qwe.local');
+      new ServiceType('service._http._qwe.local');
     };
-    expect(throws).to.throw(Error, 'protocol must be either "_tcp" or "_udp" but is "_qwe"');
+    expect(throws).to.throw(Error,
+      'protocol must be either "_tcp" or "_udp" but is "_qwe"');
     done();
   });
 
   it('should throw on bad protocol', function (done) {
     var throws = function () {
-      var type = new ServiceType('service._http._qwe.local');
+      new ServiceType('service._http._qwe.local');
     };
-    expect(throws).to.throw(Error, 'protocol must be either "_tcp" or "_udp" but is "_qwe"');
+    expect(throws).to.throw(Error,
+      'protocol must be either "_tcp" or "_udp" but is "_qwe"');
     done();
   });
 });

@@ -17,86 +17,12 @@ var DNSPacket = dns.DNSPacket;
 var path = require('path');
 var fs = require('fs');
 
-var Schemas = require('./schemas');
+//var Schemas = require('./schemas');
 
 var fixtureFolder = path.join(__dirname, 'fixtures');
-var fixturesFolderDecoded = path.join(fixtureFolder, 'decoded-sections');
-var fixturesFolderMessages = path.join(fixtureFolder, 'decoded-messages');
-
-//shamelessly borrow from mdns-js-packet
-var fixturesPacket = path.join('.', 'node_modules',
-  'mdns-js-packet', 'test', 'fixtures');
 
 var path = require('path');
-
 var helper = require('./helper');
-
-function testDecodeSection (binFolder, jsFolder) {
-  var files = fs.readdirSync(binFolder).filter(function (f) {
-    return /\.bin$/.test(f);
-  });
-
-  files.forEach(function (file) {
-    it('decode ' + file, function (done) {
-      var djsFile = path.join(jsFolder,  file.replace('.bin', '.js'));
-      var binFile = path.join(binFolder, file);
-      var djsExists = fs.existsSync(djsFile);
-
-      var b = helper.readBin(binFile);
-      expect(b).to.exist(b);
-      var packet = DNSPacket.parse(b);
-      var obj = {
-        question: {},
-        answer: {},
-        authority: {},
-        additional: {}
-      };
-      var count = 0;
-      var expected = 0;
-      for (var key in obj) {
-        expected++;
-        if (!obj.hasOwnProperty(key)) {continue;}
-        decoder.decodeSection(packet, key, obj[key]);
-        if (Schemas.hasOwnProperty(key)) {
-          Schemas.validate(obj[key], Schemas[key], validateSchema);
-        }
-        else {
-          throw new Error('Missing schema ' + key);
-        }
-      }
-
-      function validateSchema(err) {
-        if (err) {
-          console.log(key, obj[key]);
-          console.log('packet', packet);
-          if (!djsExists) {
-            helper.writeJs(djsFile, obj);
-          }
-          throw err;
-        }
-        count++;
-      }
-
-      if (!djsExists) {
-        helper.writeJs(djsFile, obj);
-      }
-      else {
-        var dj = helper.readJs(djsFile);
-        helper.equalDeep(dj, obj);
-      }
-      setTimeout(function () {
-        if (count >= expected) {
-          done();
-        }
-        else {
-          done('all schemas not validated');
-        }
-      }, 50);
-
-
-    });//--decode...
-  });
-}
 
 
 function testDecodeMessage (binFolder, jsFolder) {
@@ -129,14 +55,12 @@ function testDecodeMessage (binFolder, jsFolder) {
 
 describe('decoder', function () {
   describe('decodeSection', function () {
-    testDecodeSection(fixturesPacket, fixturesFolderDecoded);
-
     it('should thow error on bad section', function (done) {
       var p = new DNSPacket();
       var obj = {};
       var throws = function () {
         decoder.decodeSection(p, 'asdfasdf', obj);
-      }
+      };
 
       expect(throws).to.throw(Error);
       done();
@@ -144,19 +68,18 @@ describe('decoder', function () {
 
     it('should thow error on missing obj', function (done) {
       var p = new DNSPacket();
-      var obj = {};
       var throws = function () {
         decoder.decodeSection(p, 'question');
-      }
+      };
 
       expect(throws).to.throw(Error);
       done();
     });
   });
 
-  describe('decodeMessage', function () {
-    testDecodeMessage(fixturesPacket, fixturesFolderMessages);
-  });
+  // describe('decodeMessage', function () {
+  //   testDecodeMessage(fixturesPacket, fixturesFolderMessages);
+  // });
 
   describe('decodeMessage - workstation', function () {
     testDecodeMessage(fixtureFolder, fixtureFolder);
