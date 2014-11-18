@@ -130,6 +130,28 @@ function testDecodeMessage (binFolder, jsFolder) {
 describe('decoder', function () {
   describe('decodeSection', function () {
     testDecodeSection(fixturesPacket, fixturesFolderDecoded);
+
+    it('should thow error on bad section', function (done) {
+      var p = new DNSPacket();
+      var obj = {};
+      var throws = function () {
+        decoder.decodeSection(p, 'asdfasdf', obj);
+      }
+
+      expect(throws).to.throw(Error);
+      done();
+    });
+
+    it('should thow error on missing obj', function (done) {
+      var p = new DNSPacket();
+      var obj = {};
+      var throws = function () {
+        decoder.decodeSection(p, 'question');
+      }
+
+      expect(throws).to.throw(Error);
+      done();
+    });
   });
 
   describe('decodeMessage', function () {
