@@ -2,10 +2,12 @@ mDNS-js
 ==========
 
 Pure JavaScript/NodeJS mDNS discovery implementation.
+It's definitely not a full implementation at the current
+state and it will NOT work in the browser. 
 
-A lot of the functionality is copied from 
+The starting inspiration came from
 https://github.com/GoogleChrome/chrome-app-samples/tree/master/mdns-browser
-but adapted for node.
+but adapted for node. It's not much left of that now though.
 
 Install by
 
