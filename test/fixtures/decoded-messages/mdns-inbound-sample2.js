@@ -1,10 +1,23 @@
-{ question: { type: [] },
-  answer: 
-   { type: 
-      [ { name: 'workstation', protocol: 'tcp', subtypes: [] },
-        { name: 'afpovertcp', protocol: 'tcp', subtypes: [] },
-        { name: 'readynas', protocol: 'tcp', subtypes: [] },
-        { name: 'http', protocol: 'tcp', subtypes: [] },
-        { name: 'smb', protocol: 'tcp', subtypes: [] } ] },
-  authority: {},
-  additional: {} }
+{ addresses: [],
+  type: 
+   [ { name: 'workstation',
+       protocol: 'tcp',
+       subtypes: [],
+       description: 'Workstation' },
+     { name: 'afpovertcp',
+       protocol: 'tcp',
+       subtypes: [],
+       description: 'Apple File Sharing' },
+     { name: 'readynas',
+       protocol: 'tcp',
+       subtypes: [],
+       description: undefined },
+     { name: 'http',
+       protocol: 'tcp',
+       subtypes: [],
+       description: 'Web Site' },
+     { name: 'smb',
+       protocol: 'tcp',
+       subtypes: [],
+       description: 'Microsoft Windows Network' } ],
+  query: [ '_services._dns-sd._udp.local' ] }

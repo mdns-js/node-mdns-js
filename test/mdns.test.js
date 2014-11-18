@@ -1,6 +1,12 @@
-/*global describe: true, it: true, before: true, after: true */
-//var debug = require('debug')('mdns:test');
-var should = require('should');
+var Lab = require('lab');
+var lab = exports.lab = Lab.script();
+
+var describe = lab.describe;
+var it = lab.it;
+var before = lab.before;
+var after = lab.after;
+var Code = require('code');   // assertion library
+var expect = Code.expect;
 var mdns = require('../');
 
 
@@ -8,27 +14,27 @@ var mdns = require('../');
 describe('mDNS', function () {
   var browser;
   before(function (done) {
-    should.exist(mdns, 'library does not exist!?');
+    expect(mdns,  'library does not exist!?').to.exist(mdns);
     browser = mdns.createBrowser();
 
     browser.on('ready', function onReady(socketcount) {
-      socketcount.should.be.above(0);
+      expect(socketcount).to.be.above(0);
       done();
     });
   });
 
-  after(function () {
+  after(function (done) {
     browser.stop();
+    done();
   });
 
 
   it('should .discover()', function (done) {
     browser.once('update', function onUpdate(data) {
       //mdns._byService.should.have.property('_workstation._tcp');
-      data.should.have.property('interfaceIndex');
-      data.should.have.property('networkInterface');
-      data.should.have.property('addresses');
-      data.should.have.property('query');
+      expect(data).to.include(['interfaceIndex', 'networkInterface',
+        'addresses', 'query']);
+
       // if (data.query !== '_services._dns-sd._udp.local') {
       //   console.log(data);
       //   data.should.have.property('type');

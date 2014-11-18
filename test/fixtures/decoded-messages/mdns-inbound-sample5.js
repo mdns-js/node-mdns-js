@@ -1,9 +1,19 @@
-{ question: { type: [] },
-  answer: 
-   { type: 
-      [ { name: 'workstation', protocol: 'tcp', subtypes: [] },
-        { name: 'nut', protocol: 'tcp', subtypes: [] },
-        { name: 'http', protocol: 'tcp', subtypes: [] },
-        { name: 'smb', protocol: 'tcp', subtypes: [] } ] },
-  authority: {},
-  additional: {} }
+{ addresses: [],
+  type: 
+   [ { name: 'workstation',
+       protocol: 'tcp',
+       subtypes: [],
+       description: 'Workstation' },
+     { name: 'nut',
+       protocol: 'tcp',
+       subtypes: [],
+       description: undefined },
+     { name: 'http',
+       protocol: 'tcp',
+       subtypes: [],
+       description: 'Web Site' },
+     { name: 'smb',
+       protocol: 'tcp',
+       subtypes: [],
+       description: 'Microsoft Windows Network' } ],
+  query: [ '_services._dns-sd._udp.local' ] }

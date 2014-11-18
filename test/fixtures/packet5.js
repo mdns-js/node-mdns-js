@@ -1,4 +1,1 @@
-{ question: { type: [ { name: 'workstation', protocol: 'tcp', subtypes: [] } ] },
-  answer: {},
-  authority: {},
-  additional: {} }
+{ addresses: [], query: [ '_workstation._tcp.local' ] }

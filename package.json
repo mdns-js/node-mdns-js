@@ -1,6 +1,6 @@
 {
   "name": "mdns-js",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/kmpm/node-mdns-js.git"
@@ -17,15 +17,15 @@
     "mdns-js-packet": "0.1.x"
   },
   "devDependencies": {
+    "code": "^1.2.1",
     "joi": "^4.8.1",
     "jscs": "^1.6.2",
     "jshint": "*",
-    "mocha": "*",
-    "should": "*"
+    "lab": "^5.0.2"
   },
   "scripts": {
-    "test": "mocha",
-    "lint": "jshint lib test examples index.js && jscs lib test examples index.js",
+    "test": "lab --flat --coverage",
+    "lint": "jshint lib test/*.js examples index.js && jscs lib test/*.js examples index.js",
     "doc": "jsdoc -d .\\doc index.js lib"
   },
   "author": {

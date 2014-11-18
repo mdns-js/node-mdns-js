@@ -21,7 +21,7 @@ exports.answer = {
 	port: Joi.number().integer(),
 	fullname: Joi.string(),
 	txt: Joi.array()
-}
+};
 
 exports.additional = {
 	type: Joi.array().includes(exports.type),
@@ -29,11 +29,11 @@ exports.additional = {
 	fullname: Joi.string(),
 	txt: Joi.array(),
 	host: Joi.string()
-}
+};
 
 exports.authority = {
 	type: Joi.array().includes(exports.type)
-}
+};
 
 
 exports.validate = Joi.validate;

@@ -1,10 +1,18 @@
-/*global describe: true, it: true */
-//var debug = require('debug')('mdns:test');
-var should = require('should');
+var Lab = require('lab');
+var lab = exports.lab = Lab.script();
+
+var describe = lab.describe;
+var it = lab.it;
+//var before = lab.before;
+//var after = lab.after;
+var Code = require('code');   // assertion library
+var expect = Code.expect;
+
+
 var pf = require('../lib/packetfactory');
 var mdns = require('../');
 var dns = require('mdns-js-packet');
-var DNSPacket = dns.DNSPacket;
+// var DNSPacket = dns.DNSPacket;
 var DNSRecord = dns.DNSRecord;
 
 function mockAdvertisement() {
@@ -23,8 +31,8 @@ describe('packetfactory', function () {
   it('buildQDPacket', function (done) {
     var context = mockAdvertisement();
     var packet = pf.buildQDPacket.apply(context, []);
-    context.alias.should.equal('hello._http._tcp.local');
-    should.exist(packet);
+    expect(context.alias).to.equal('hello._http._tcp.local');
+    expect(packet).to.exist();
     done();
   });
 
@@ -33,12 +41,12 @@ describe('packetfactory', function () {
     var context = mockAdvertisement();
     var packet = pf.buildQDPacket.apply(context, []);
     pf.buildANPacket.apply(context, [DNSRecord.TTL]);
-    should.exist(packet);
+    expect(packet).to.exist();
     done();
   });
 
 
-  it('createAdvertisement', function () {
+  it('createAdvertisement', function (done) {
     var service = mdns.createAdvertisement(mdns.tcp('_http'), 9876,
     {
       name:'hello',
@@ -47,8 +55,11 @@ describe('packetfactory', function () {
       }
     });
 
-    service.should.have.property('port', 9876);
-    service.should.have.property('options');
-    service.options.should.have.property('name', 'hello');
+    expect(service).to.include({port:9876});
+    expect(service.serviceType).to.include({name: 'http', protocol: 'tcp'});
+    expect(service).to.include('options');
+    expect(service.options, 'options').to.include({name: 'hello'});
+
+    done();
   });
 });
