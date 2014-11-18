@@ -36,7 +36,7 @@ describe('DNSPacket', function () {
     done();
   });
 
-  it('should parse service response sample5', function (done) {
+  it('should parse service response samples', function (done) {
     var buf = new Buffer(packets.responses.services.sample5, 'hex');
     var packet = DNSPacket.parse(buf);
 
