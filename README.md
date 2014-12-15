@@ -99,7 +99,7 @@ References
 * http://en.wikipedia.org/wiki/Multicast_DNS
 * http://en.wikipedia.org/wiki/Zero_configuration_networking#Service_discovery
 * RFC 6762 - mDNS - http://tools.ietf.org/html/rfc6762
-* RFC 6763 - DNS Based Service Discovery - http://tools.ietf.org/html/rfc6763
+* RFC 6763 - DNS Based Service Discovery (DNS-SD) - http://tools.ietf.org/html/rfc6763
 * http://www.tcpipguide.com/free/t_DNSMessageHeaderandQuestionSectionFormat.htm
 
 
