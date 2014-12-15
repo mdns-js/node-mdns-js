@@ -4,7 +4,7 @@ var TIMEOUT = 5000; //5 seconds
 
 
 var browser = mdns.createBrowser(); //defaults to mdns.ServiceType.wildcard
-//var browser = mdns.createBrowser(mdns.tcp("googlecast"));
+//var browser = mdns.createBrowser(mdns.tcp('googlecast'));
 //var browser = mdns.createBrowser(mdns.tcp("workstation"));
 
 browser.on('ready', function onReady() {
