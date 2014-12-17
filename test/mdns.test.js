@@ -29,7 +29,8 @@ describe('mDNS', function () {
   });
 
 
-  it('should .discover()', {skip: process.env.MDNS_NO_RESPONSE}, function (done) {
+  it('should .discover()', {skip: process.env.MDNS_NO_RESPONSE},
+    function (done) {
     browser.once('update', function onUpdate(data) {
       expect(data).to.include(['interfaceIndex', 'networkInterface',
         'addresses', 'query']);

@@ -85,7 +85,7 @@ describe('ServiceType', function () {
   it('should subtype using _printer._sub', function (done) {
     var st = new ServiceType('_printer._sub._http._tcp.local');
     expect(JSON.stringify(st)).to.equal('{"name":"http","protocol":"tcp",' +
-      '"subtypes":["printer"]}');
+      '"subtypes":["_printer"]}');
     expect(st.toString()).to.equal('_http._tcp,_printer');
     done();
   });
@@ -93,8 +93,9 @@ describe('ServiceType', function () {
   it('should subtype using ,_printer', function (done) {
     var st = new ServiceType('_http._tcp,_printer');
     expect(JSON.stringify(st)).to.equal('{"name":"http","protocol":"tcp",' +
-      '"subtypes":["printer"]}');
-    expect(st.toString()).to.equal('_http._tcp,_printer');
+      '"subtypes":["_printer"]}');
+
+    expect(st.toString(), 'toString').to.equal('_http._tcp,_printer');
     done();
   });
 
@@ -149,5 +150,13 @@ describe('ServiceType', function () {
     function fn () {
       new ServiceType(1234);
     }
+  });
+
+  it('should work out _sub of apple-mobdev', {only: true}, function (done) {
+    var s = new ServiceType('46c20544._sub._apple-mobdev2._tcp.local');
+    expect(s.name, 'name').to.equal('apple-mobdev2');
+    expect(s.subtypes).to.have.length(1);
+    expect(s.subtypes[0], 'subtypes[0]').to.equal('46c20544');
+    done();
   });
 });
