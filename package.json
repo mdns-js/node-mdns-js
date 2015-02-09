@@ -11,6 +11,9 @@
     "dns-sd",
     "zeroconf"
   ],
+  "engines": {
+    "node" : "^0.10.3 || ^0.12.0"
+  },
   "main": "index.js",
   "dependencies": {
     "debug": "^2.1.1",
