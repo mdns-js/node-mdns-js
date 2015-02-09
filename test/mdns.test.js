@@ -14,6 +14,7 @@ var mdns = require('../');
 describe('mDNS', function () {
   var browser;
   before(function (done) {
+    mdns.excludeInterface('0.0.0.0');
     expect(mdns,  'library does not exist!?').to.exist(mdns);
     browser = mdns.createBrowser();
 

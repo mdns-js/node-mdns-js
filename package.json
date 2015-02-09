@@ -13,15 +13,15 @@
   ],
   "main": "index.js",
   "dependencies": {
-    "debug": "^2.1.0",
+    "debug": "^2.1.1",
     "mdns-js-packet": "0.1.x"
   },
   "devDependencies": {
-    "code": "^1.2.1",
-    "joi": "^5.0.1",
-    "jscs": "^1.6.2",
-    "jshint": "^2.5.0",
-    "lab": "^5.1.0"
+    "code": "^1.3.0",
+    "joi": "^5.1.0",
+    "jscs": "^1.11.1",
+    "jshint": "^2.6.0",
+    "lab": "^5.2.1"
   },
   "scripts": {
     "test": "lab --flat --coverage",
