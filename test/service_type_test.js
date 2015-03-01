@@ -152,7 +152,7 @@ describe('ServiceType', function () {
     }
   });
 
-  it('should work out _sub of apple-mobdev', {only: true}, function (done) {
+  it('should work out _sub of apple-mobdev', function (done) {
     var s = new ServiceType('46c20544._sub._apple-mobdev2._tcp.local');
     expect(s.name, 'name').to.equal('apple-mobdev2');
     expect(s.subtypes).to.have.length(1);
