@@ -27,20 +27,6 @@ module.exports.createBrowser = function browserCreated(serviceType) {
 };
 
 
-
-module.exports.excludeInterface = function (iface) {
-  if (networking.started) {
-    throw new Error('can not exclude interfaces after start');
-  }
-  if (iface === '0.0.0.0') {
-    networking.INADDR_ANY = false;
-  }
-  else {
-    var err = new Error('Not a supported interface');
-    err.interface = iface;
-  }
-};
-
 /* @borrows Advertisement as Advertisement */
 module.exports.Advertisement = require('./lib/advertisement'); //just for convenience
 
