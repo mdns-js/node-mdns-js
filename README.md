@@ -43,6 +43,18 @@ browser.on('update', function (data) {
 });
 ```
 
+Reporting issues
+----------------
+Please report any issues at https://github.com/kmpm/node-mdns-js/issues
+
+But please check if there is a similar issue already reported and
+__make a note of which OS__ and OS version you are running.
+There is some issues that turn up only on Windows 8.1 but not in 
+Windows 7 for example. And there are differences between Mac and 
+Windows so... __please__...
+
+Another important thing to know if there is another mdns service
+running on the same machine. This would be for example Bonjour and Avahi.
 
 
 Debugging
