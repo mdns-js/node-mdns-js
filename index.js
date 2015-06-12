@@ -23,6 +23,9 @@ module.exports.createBrowser = function browserCreated(serviceType) {
   if (typeof serviceType === 'undefined') {
     serviceType = st.ServiceType.wildcard;
   }
+  var INADDR_ANY = networking.INADDR_ANY;
+  networking = new Networking();
+  networking.INADDR_ANY = INADDR_ANY;
   return new module.exports.Browser(networking, serviceType);
 };
 
