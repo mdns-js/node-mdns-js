@@ -17,7 +17,7 @@
   "main": "index.js",
   "dependencies": {
     "debug": "^2.1.1",
-    "mdns-js-packet": "git://github.com/winkapp/node-mdns-js-packet.git",
+    "mdns-js-packet": "^0.1.11",
     "semver": "^4.3.1"
   },
   "devDependencies": {
