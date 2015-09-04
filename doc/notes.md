@@ -39,15 +39,20 @@ From [RFC 6762 - Section 5.2](https://tools.ietf.org/html/rfc6762#section-5.2)
 > the mDNS link-local multicast address (224.0.0.251 and/or its IPv6
 > equivalent FF02::FB).
 
-So, if there is an already running service on that computer bound to the same port there might be issues unless there is a way of sharing 
-a port. 
+If trying to bind to 5353 for the purpose of running a fully compliant querier and
+if there is an already running service on that computer bound to the same port 
+there might be issues unless there is a way of sharing a port. 
 
 [RFC 6762 - Section 15 - Considerations for multiple responders on the same machine](https://tools.ietf.org/html/rfc6762#section-15)
 > all Multicast DNS implementations SHOULD use the
 > SO_REUSEPORT and/or SO_REUSEADDR options (or equivalent as
 > appropriate for the operating system in question)
 
-But there might still be some issues as noted in section 15.4
+Node >=0.12.x have an option to `dgram.createSocket()` that is called  reuseAddr 
+which should correspond to SO_REUSEADDR. Node <=0.10.x does not have this option
+and might have issues sharing the address and port with other services.
+
+But there might still be some other issues as noted in section 15.4
 https://tools.ietf.org/html/rfc6762#section-15.4
 
 
