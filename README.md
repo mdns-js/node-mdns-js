@@ -97,7 +97,7 @@ This will run jshint as well as jscs that will do some basic syntax
 and code style checks.
 Fix any issues befor committing and creating a pull-request.
 
-Look at the .jshintrc and .jscs.json for the details.
+Look at the .eslintrc file for the details.
 
 
 License
