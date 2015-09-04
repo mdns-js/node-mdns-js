@@ -147,7 +147,7 @@ describe('ServiceType', function () {
   it('should throw on number as input', function (done) {
     expect(fn).to.throw(Error, 'argument must be a string, array or object');
     done();
-    function fn () {
+    function fn() {
       new ServiceType(1234);
     }
   });

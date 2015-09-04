@@ -1,9 +1,16 @@
 {
     "rules": {
         "curly": [2],
+        "eol-last": [2],
         "indent": [2, 2, {"SwitchCase": 1}],
+        "max-len": [2, 120, 4, {"ignoreComments": true, "ignoreUrls": true}],
+        "no-trailing-spaces": [2],
         "quotes": [2,"single"],
-        "semi": [2, "always"]
+        "semi": [2, "always"],
+        "space-after-keywords": [2],
+        "space-before-function-paren": [2,  {"anonymous": "always", "named": "never"}],
+        "space-infix-ops": [2],
+        "space-unary-ops": [2]
     },
     "env": {
         "node": true

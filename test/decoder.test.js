@@ -21,11 +21,10 @@ var fs = require('fs');
 
 var fixtureFolder = path.join(__dirname, 'fixtures');
 
-var path = require('path');
 var helper = require('./helper');
 
 
-function testDecodeMessage (binFolder, jsFolder) {
+function testDecodeMessage(binFolder, jsFolder) {
   var files = fs.readdirSync(binFolder).filter(function (f) {
     return /\.bin$/.test(f);
   });
