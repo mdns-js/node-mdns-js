@@ -1,9 +1,35 @@
 Notes
 =====
 
+## Queries
+From [RFC 6762 - Section 5](https://tools.ietf.org/html/rfc6762#section-5)
+> There are two kinds of Multicast DNS queries: one-shot queries of the
+> kind made by legacy DNS resolvers, and continuous, ongoing Multicast
+> DNS queries made by fully compliant Multicast DNS queriers, which
+> support asynchronous operations including DNS-Based Service Discovery
+> [RFC6763](https://tools.ietf.org/html/rfc6763).
+
+I would like to support both methods where the continous method is the
+primary and one-shot only to be used when you actually just want to do 
+a single lookup and then stop.
+
+### One-Shot
+Timeout should be about 2-3 seconds according to RFC6762.
+
+> regardless of whether they are sent from a dynamic port or from a 
+> fixed port, these queries MUST NOT be sent using UDP source 
+> port 5353, since using UDP source port 5353 signals the presence of 
+> a fully compliant Multicast DNS querier
+
+Ok one-shot is NOT allowed to be sent from 5353, that explains why I 
+have seen both. 
 
 
-## Regarding what ports to use
+### Continuous Multicast DNS Querying
+
+
+
+## Regarding what ports and interfaces to use
 
 From [RFC 6762 - Section 5.2](https://tools.ietf.org/html/rfc6762#section-5.2)
 > A compliant Multicast DNS querier, which implements the rules
@@ -23,3 +49,8 @@ a port.
 
 But there might still be some issues as noted in section 15.4
 https://tools.ietf.org/html/rfc6762#section-15.4
+
+
+## IPV6
+
+224.0.0.251:5353 is equivalent to [FF02::FB]:5353
