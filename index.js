@@ -1,11 +1,8 @@
-
-
 var config = require('./package.json');
 var st = require('./lib/service_type');
 var Networking = require('./lib/networking');
 
-var networking = new Networking();
-
+var networking = new Networking({INADDR_ANY:true});
 /** @member {string} */
 module.exports.version = config.version;
 module.exports.name = config.name;
@@ -70,4 +67,3 @@ module.exports.tcp = st.protocolHelper('tcp');
 
 /** @function */
 module.exports.udp = st.protocolHelper('udp');
-
