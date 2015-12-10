@@ -19,7 +19,7 @@ Install by
 
     npm install mdns-js
 
-[![Build Status](https://travis-ci.org/kmpm/node-mdns-js.svg?branch=master)](https://travis-ci.org/kmpm/node-mdns-js)
+[![Build Status](https://travis-ci.org/mdns-js/node-mdns-js.svg?branch=master)](https://travis-ci.org/mdns-js/node-mdns-js)
 
 Future
 ------
