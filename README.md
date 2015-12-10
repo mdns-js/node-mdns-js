@@ -9,6 +9,12 @@ The starting inspiration came from
 https://github.com/GoogleChrome/chrome-app-samples/tree/master/mdns-browser
 but adapted for node. It's not much left of that now though.
 
+__NEW LOCATION__
+
+This project was moved into it's own organisation. Please update any git remotes you might have pointing here.
+
+    git remote set-url origin https://github.com/mdns-js/node-mdns-js.git
+
 Install by
 
     npm install mdns-js
