@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>node-mdns-js API Docs Index</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.flatly.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">node-mdns-js API Docs</a>
+	</div>
+	<div class="navbar-collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="module-ServiceType.html">ServiceType</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="Advertisement.html">Advertisement</a></li><li><a href="Browser.html">Browser</a></li><li><a href="module-ServiceType-ServiceType.html">ServiceType~ServiceType</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="events.list.html" class="dropdown-toggle" data-toggle="dropdown">Events<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="Browser.html#event:update">Browser#event:update</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="global.html#createAdvertisement">createAdvertisement</a></li><li><a href="global.html#createBrowser">createBrowser</a></li><li><a href="global.html#makeServiceType">makeServiceType</a></li><li><a href="global.html#ServiceType">ServiceType</a></li><li><a href="global.html#tcp">tcp</a></li><li><a href="global.html#udp">udp</a></li><li><a href="global.html#version">version</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+		<div class="col-sm-3 col-md-3">
+            <form class="navbar-form" role="search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+	</div>
+
+</div>
+</div>
+
+
+<div class="container">
+<div class="row">
+
+	
+	<div class="col-md-8">
+	
+		<div id="main">
+			
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+    <section class="readme-section">
+        <article><h1>mDNS-js</h1><p>Pure JavaScript/NodeJS mDNS discovery implementation.
+It's definitely not a full implementation at the current
+state and it will NOT work in the browser. </p>
+<p>The starting inspiration came from
+https://github.com/GoogleChrome/chrome-app-samples/tree/master/mdns-browser
+but adapted for node. It's not much left of that now though.</p>
+<p><strong>NEW LOCATION</strong></p>
+<p>This project was moved into it's own organisation. Please update any git remotes you might have pointing here.</p>
+<pre class="prettyprint source"><code>git remote set-url origin https://github.com/mdns-js/node-mdns-js.git</code></pre><p>Install by</p>
+<pre class="prettyprint source"><code>npm install mdns-js</code></pre><p><a href="https://travis-ci.org/mdns-js/node-mdns-js"><img src="https://travis-ci.org/mdns-js/node-mdns-js.svg?branch=master" alt="Build Status"></a></p>
+<h2>Future</h2><p>It would be great to have a full implementation of mDSN + DNS-SD in pure JS but
+progress will be slow unless someone is willing to pitch in with
+pull requests, specifications for wanted functions etc.
+Also, as you should avoid to have multiple mDNS stacks on a system this
+might clash with stuff like avahi and bonjour.</p>
+<h2>example</h2><pre class="prettyprint source lang-javascript"><code>var mdns = require('mdns-js');
+//if you have another mdns daemon running, like avahi or bonjour, uncomment following line
+//mdns.excludeInterface('0.0.0.0');
+
+var browser = mdns.createBrowser();
+
+browser.on('ready', function () {
+    browser.discover(); 
+});
+
+browser.on('update', function (data) {
+    console.log('data:', data);
+});</code></pre><h2>Reporting issues</h2><p>Please report any issues at https://github.com/kmpm/node-mdns-js/issues</p>
+<p>But please check if there is a similar issue already reported and
+<strong>make a note of which OS</strong> and OS version you are running.
+There is some issues that turn up only on Windows 8.1 but not in 
+Windows 7 for example. And there are differences between Mac and 
+Windows so... <strong>please</strong>...</p>
+<p>Another important thing to know if there is another mdns service
+running on the same machine. This would be for example Bonjour and Avahi.</p>
+<h2>Debugging</h2><p>This library is using the <a href="https://github.com/visionmedia/debug">debug</a> 
+module from TJ Holowaychuk and can be used like this.</p>
+<pre class="prettyprint source lang-bash"><code>DEBUG=mdns:* node examples/simple.js</code></pre><p>This will spit out LOTS of information that might be useful.
+If you have some issues with something where you might want
+to communicate the contents of a packet (ie create an issue on github)
+you could limit the debug information to just that.</p>
+<pre class="prettyprint source lang-bash"><code>DEBUG=mdns:browser:packet node examples/simple.js</code></pre><h2>Contributing</h2><p>Pull-request will be gladly accepted.</p>
+<p>If possible any api should be as close match to the api of node-mdns but
+be pragmatic. Look at issue #5.</p>
+<p>Please run any existing tests with</p>
+<pre class="prettyprint source"><code>npm test</code></pre><p>and preferably add more tests.</p>
+<p>Before creating a pull-request please run </p>
+<pre class="prettyprint source"><code>npm run lint </code></pre><p>This will run jshint as well as jscs that will do some basic syntax
+and code style checks.
+Fix any issues befor committing and creating a pull-request.</p>
+<p>Look at the .eslintrc file for the details.</p>
+<h1>License</h1><p>Apache 2.0. See LICENSE file.</p>
+<h1>References</h1><ul>
+<li>https://github.com/GoogleChrome/chrome-app-samples/tree/master/samples/mdns-browser</li>
+<li>http://en.wikipedia.org/wiki/Multicast_DNS</li>
+<li>http://en.wikipedia.org/wiki/Zero_configuration_networking#Service_discovery</li>
+<li>RFC 6762 - mDNS - http://tools.ietf.org/html/rfc6762</li>
+<li>RFC 6763 - DNS Based Service Discovery (DNS-SD) - http://tools.ietf.org/html/rfc6763</li>
+<li>http://www.tcpipguide.com/free/t_DNSMessageHeaderandQuestionSectionFormat.htm</li>
+</ul>
+<h1>Contributors</h1><ul>
+<li>James Sigurðarson, @jamiees2</li>
+<li>Stefan Sauer, @ensonic</li>
+</ul></article>
+    </section>
+
+
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3"></div>
+		</div>
+	
+
+</div>
+</div>
+
+<div class="modal fade" id="searchResults">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Search results</h4>
+      </div>
+      <div class="modal-body"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
+
+<footer>
+
+
+	<span class="copyright">
+	DocStrap Copyright © 2012-2013 The contributors to the JSDoc3 and DocStrap projects.
+	</span>
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a>
+	on 2015-12-11T14:09:15-08:00 using the <a
+	href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+<script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			var id = $( heading ).attr( "id" );
+			return id && id.replace(/\~/g, '-inner-').replace(/\./g, '-static-') || ( prefix + i );
+		},
+		selectors   : "h1,h2,h3,h4",
+		showAndHide : false,
+                navbarOffset: 10,
+		smoothScrolling: true
+	} );
+
+	$( "#toc>ul" ).addClass( "nav nav-pills nav-stacked" );
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		SearcherDisplay.init();
+	});
+</script>
+
+</body>
+</html>
