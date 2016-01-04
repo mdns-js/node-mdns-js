@@ -3,7 +3,7 @@
   "version": "0.4.0",
   "repository": {
     "type": "git",
-    "url": "git://github.com/kmpm/node-mdns-js.git"
+    "url": "git://github.com/mdns-js/node-mdns-js.git"
   },
   "description": "JavaScript/NodeJS mDNS discovery implementation",
   "keywords": [
