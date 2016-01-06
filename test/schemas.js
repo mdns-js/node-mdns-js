@@ -8,7 +8,7 @@ exports.type = Joi.object({
 });
 
 exports.question = {
-  type: Joi.array().includes(exports.type),
+  type: Joi.array().items(exports.type),
   port: Joi.number().integer().optional(),
   fullname: Joi.string().optional(),
   host: Joi.string().optional(),
@@ -16,7 +16,7 @@ exports.question = {
 };
 
 exports.answer = {
-  type: Joi.array().includes(exports.type),
+  type: Joi.array().items(exports.type),
   host: Joi.string(),
   port: Joi.number().integer(),
   fullname: Joi.string(),
@@ -24,7 +24,7 @@ exports.answer = {
 };
 
 exports.additional = {
-  type: Joi.array().includes(exports.type),
+  type: Joi.array().items(exports.type),
   port: Joi.number().integer(),
   fullname: Joi.string(),
   txt: Joi.array(),
@@ -32,7 +32,7 @@ exports.additional = {
 };
 
 exports.authority = {
-  type: Joi.array().includes(exports.type)
+  type: Joi.array().items(exports.type)
 };
 
 

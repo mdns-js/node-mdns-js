@@ -17,12 +17,12 @@
   "main": "index.js",
   "dependencies": {
     "debug": "^2.1.1",
-    "mdns-js-packet": "^0.2.0",
-    "semver": "^5.1.0"
+    "mdns-js-packet": "~0.2.0",
+    "semver": "~5.1.0"
   },
   "devDependencies": {
     "code": "*",
-    "joi": "*",
+    "joi": "~7.1.0",
     "lab": "*"
   },
   "scripts": {
