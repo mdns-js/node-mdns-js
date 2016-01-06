@@ -1,6 +1,8 @@
 mDNS-js
 ==========
 
+[![Build Status](https://travis-ci.org/mdns-js/node-mdns-js.svg?branch=master)](https://travis-ci.org/mdns-js/node-mdns-js)
+
 Pure JavaScript/NodeJS mDNS discovery implementation.
 It's definitely not a full implementation at the current
 state and it will NOT work in the browser. 
@@ -19,7 +21,8 @@ Install by
 
     npm install mdns-js
 
-[![Build Status](https://travis-ci.org/mdns-js/node-mdns-js.svg?branch=master)](https://travis-ci.org/mdns-js/node-mdns-js)
+If you are running node version < 4.1 you will have to use a version of this library that is below
+version 0.5.0
 
 Future
 ------
