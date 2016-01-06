@@ -12,7 +12,7 @@ var expect = Code.expect;
 var debug = require('debug')('mdns:test:decoder');
 
 var decoder = require('../lib/decoder');
-var dns = require('mdns-js-packet');
+var dns = require('dns-js');
 var DNSPacket = dns.DNSPacket;
 var path = require('path');
 var fs = require('fs');

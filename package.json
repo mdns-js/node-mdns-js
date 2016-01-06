@@ -1,6 +1,6 @@
 {
   "name": "mdns-js",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/mdns-js/node-mdns-js.git"
@@ -17,7 +17,7 @@
   "main": "index.js",
   "dependencies": {
     "debug": "^2.1.1",
-    "mdns-js-packet": "~0.2.0",
+    "dns-js": "~0.2.1",
     "semver": "~5.1.0"
   },
   "devDependencies": {
@@ -39,7 +39,7 @@
   ],
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/kmpm/node-mdns-js/issues"
+    "url": "https://github.com/mdns-js/node-mdns-js/issues"
   },
-  "homepage": "https://github.com/kmpm/node-mdns-js"
+  "homepage": "https://github.com/mdns-js/node-mdns-js"
 }

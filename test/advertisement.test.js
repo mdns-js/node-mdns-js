@@ -11,7 +11,7 @@ var expect = Code.expect;
 
 var pf = require('../lib/packetfactory');
 var mdns = require('../');
-var dns = require('mdns-js-packet');
+var dns = require('dns-js');
 // var DNSPacket = dns.DNSPacket;
 var DNSRecord = dns.DNSRecord;
 
