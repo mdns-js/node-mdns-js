@@ -67,7 +67,7 @@ exports.equalJs = function (expected, actual) {
 var equalDeep = exports.equalDeep = function (expected, actual, path) {
 
   var np = path || 'root';
-  function dp (a, b) {
+  function dp(a, b) {
     return a + '.' + b;
   }
 

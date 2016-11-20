@@ -1,6 +1,8 @@
 mDNS-js
 ==========
 
+[![Build Status](https://travis-ci.org/mdns-js/node-mdns-js.svg?branch=master)](https://travis-ci.org/mdns-js/node-mdns-js)
+
 Pure JavaScript/NodeJS mDNS discovery implementation.
 It's definitely not a full implementation at the current
 state and it will NOT work in the browser. 
@@ -9,11 +11,18 @@ The starting inspiration came from
 https://github.com/GoogleChrome/chrome-app-samples/tree/master/mdns-browser
 but adapted for node. It's not much left of that now though.
 
+__NEW LOCATION__
+
+This project was moved into it's own organisation. Please update any git remotes you might have pointing here.
+
+    git remote set-url origin https://github.com/mdns-js/node-mdns-js.git
+
 Install by
 
     npm install mdns-js
 
-[![Build Status](https://travis-ci.org/kmpm/node-mdns-js.svg?branch=master)](https://travis-ci.org/kmpm/node-mdns-js)
+If you are running node version < 4.1 you will have to use a version of this library that is below
+version 0.5.0
 
 Future
 ------
@@ -45,7 +54,7 @@ browser.on('update', function (data) {
 
 Reporting issues
 ----------------
-Please report any issues at https://github.com/kmpm/node-mdns-js/issues
+Please report any issues at https://github.com/mdns-js/node-mdns-js/issues
 
 But please check if there is a similar issue already reported and
 __make a note of which OS__ and OS version you are running.
@@ -97,7 +106,7 @@ This will run jshint as well as jscs that will do some basic syntax
 and code style checks.
 Fix any issues befor committing and creating a pull-request.
 
-Look at the .jshintrc and .jscs.json for the details.
+Look at the .eslintrc file for the details.
 
 
 License

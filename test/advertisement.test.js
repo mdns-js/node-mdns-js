@@ -11,14 +11,14 @@ var expect = Code.expect;
 
 var pf = require('../lib/packetfactory');
 var mdns = require('../');
-var dns = require('mdns-js-packet');
+var dns = require('dns-js');
 // var DNSPacket = dns.DNSPacket;
 var DNSRecord = dns.DNSRecord;
 
 function mockAdvertisement() {
   var context = {};
   context.options = {
-    name: 'hello',
+    name: 'hello'
   };
   context.nameSuffix = '';
   context.port = 4242;
@@ -47,8 +47,7 @@ describe('packetfactory', function () {
 
 
   it('createAdvertisement', function (done) {
-    var service = mdns.createAdvertisement(mdns.tcp('_http'), 9876,
-    {
+    var service = mdns.createAdvertisement(mdns.tcp('_http'), 9876, {
       name:'hello',
       txt:{
         txtvers:'1'

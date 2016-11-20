@@ -1,6 +1,7 @@
 node_modules/
 doc/
 private/
+.vscode/
 *.log
 *.sublime-*
 

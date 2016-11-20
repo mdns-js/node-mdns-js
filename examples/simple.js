@@ -1,3 +1,4 @@
+/*eslint no-console:0*/
 var mdns = require('../');
 
 var TIMEOUT = 5000; //5 seconds

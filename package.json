@@ -1,9 +1,9 @@
 {
   "name": "mdns-js",
-  "version": "0.3.1",
+  "version": "0.5.1",
   "repository": {
     "type": "git",
-    "url": "git://github.com/kmpm/node-mdns-js.git"
+    "url": "git://github.com/mdns-js/node-mdns-js.git"
   },
   "description": "JavaScript/NodeJS mDNS discovery implementation",
   "keywords": [
@@ -12,24 +12,22 @@
     "zeroconf"
   ],
   "engines": {
-    "node": "^0.10.3 || ^0.12.0"
+    "node": ">= 4.1.0"
   },
   "main": "index.js",
   "dependencies": {
     "debug": "^2.1.1",
-    "mdns-js-packet": "0.1.x",
-    "semver": "^4.3.1"
+    "dns-js": "~0.2.1",
+    "semver": "~5.1.0"
   },
   "devDependencies": {
-    "code": "^1.3.0",
-    "joi": "^5.1.0",
-    "jscs": "^1.11.1",
-    "jshint": "^2.6.0",
-    "lab": "^5.2.1"
+    "code": "*",
+    "joi": "~7.1.0",
+    "lab": "*"
   },
   "scripts": {
     "test": "lab --flat --coverage",
-    "lint": "jshint lib test/*.js examples index.js && jscs lib test/*.js examples index.js",
+    "lint": "eslint test examples lib index.js",
     "doc": "jsdoc -d .\\doc index.js lib"
   },
   "author": {
@@ -41,7 +39,7 @@
   ],
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/kmpm/node-mdns-js/issues"
+    "url": "https://github.com/mdns-js/node-mdns-js/issues"
   },
-  "homepage": "https://github.com/kmpm/node-mdns-js"
+  "homepage": "https://github.com/mdns-js/node-mdns-js"
 }
