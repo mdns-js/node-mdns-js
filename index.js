@@ -67,6 +67,15 @@ module.exports.setNetworkOptions = (options) => {
   networking.options = options;
 };
 
+/**
+ * Enables getting network options
+ * @method
+ * @return {object} options - A configuration object describing the desired network options
+ */
+module.exports.getNetworkOptions = () => {
+  return networking.options;
+};
+
 
 /* @borrows Advertisement as Advertisement */
 module.exports.Advertisement = require('./lib/advertisement'); //just for convenience
@@ -91,6 +100,9 @@ module.exports.ServiceType = st.ServiceType;
 
 /** @property {module:ServiceType.makeServiceType} */
 module.exports.makeServiceType = st.makeServiceType;
+
+/** @property */
+module.exports.networking = networking;
 
 /** @function */
 module.exports.tcp = st.protocolHelper('tcp');

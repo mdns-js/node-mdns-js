@@ -60,5 +60,39 @@ describe('packetfactory', function () {
     expect(service.options, 'options').to.include({name: 'hello'});
 
     done();
+
   });
+
+  it('should enable setting networking options', function (done) {
+    var service = mdns.createAdvertisement(mdns.tcp('_http'), 9876, {
+      name: 'hello',
+      txt: {
+        txtvers: '1'
+      }
+    });
+
+    expect(mdns.getNetworkOptions()).to.be.empty();
+    mdns.setNetworkOptions({ test: 'test' });
+    expect(mdns.getNetworkOptions()).to.include('test');
+    mdns.setNetworkOptions({});
+    expect(mdns.getNetworkOptions()).to.be.empty();
+
+    done();
+  });
+
+  it('should enable restricting to linkLocal only addresses', function (done) {
+    var service = mdns.createAdvertisement(mdns.tcp('_http'), 9876, {
+      name: 'hello',
+      txt: {
+        txtvers: '1'
+      }
+    });
+
+    expect(mdns.networking.INADDR_ANY).to.equal(true);
+    mdns.listenOnLinkLocalMulticastOnly();
+    expect(mdns.networking.INADDR_ANY).to.equal(false);
+
+    done();
+  });
+
 });
