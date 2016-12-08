@@ -48,7 +48,7 @@ module.exports.excludeInterface = function (iface) {
  * This is a convenience function to avoid having to manually exclude both address families.
  * @method
  */
-module.exports.listenOnLinkLocalMulticastOnly = () => {
+module.exports.listenOnLinkLocalMulticastOnly = function () {
   if (networking.started) {
     throw new Error('can not exclude interfaces after start');
   }
@@ -60,7 +60,7 @@ module.exports.listenOnLinkLocalMulticastOnly = () => {
  * @method
  * @param {string} family - String Enum, either 'IPv4', 'IPv6', 'both' or 'any'
  */
-module.exports.setAddressFamily = (family) => {
+module.exports.setAddressFamily = function (family) {
   if (['IPv4', 'IPv6', 'both', 'any'].indexOf(family) === -1) {
     throw new Error('invalid network address family option: ' + family + ", must be either 'IPv4', 'IPv6', 'both' or 'any'");
   }
@@ -72,7 +72,7 @@ module.exports.setAddressFamily = (family) => {
  * @method
  * @param {object} options - A configuration object describing the desired network options
  */
-module.exports.setNetworkOptions = (options) => {
+module.exports.setNetworkOptions = function (options) {
   if (networking.started) {
     throw new Error('can not set network options after interfaces have been started');
   }
@@ -84,7 +84,7 @@ module.exports.setNetworkOptions = (options) => {
  * @method
  * @return {object} options - A configuration object describing the desired network options
  */
-module.exports.getNetworkOptions = () => {
+module.exports.getNetworkOptions = function () {
   return networking.options;
 };
 
