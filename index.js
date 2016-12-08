@@ -31,7 +31,7 @@ module.exports.excludeInterface = function (iface) {
   if (networking.started) {
     throw new Error('can not exclude interfaces after start');
   }
-  if (iface === '0.0.0.0') {
+  if (iface === '0.0.0.0' || iface === '::') {
     networking.INADDR_ANY = false;
   }
   else {
