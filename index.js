@@ -40,6 +40,21 @@ module.exports.excludeInterface = function (iface) {
   }
 };
 
+/**
+ * Restrict the network socket to only listen on the respective link local multicast addresses
+ * IPv4: 224.0.0.251
+ * IPv6: FF02::FB
+ * instead of binding the port to all receiving local IP addresses (0.0.0.0 / ::).
+ * This is a convenience function to avoid having to manually exclude both address families.
+ * @method
+ */
+module.exports.listenOnLinkLocalMulticastOnly = () => {
+  if (networking.started) {
+    throw new Error('can not exclude interfaces after start');
+  }
+  networking.INADDR_ANY = false;
+};
+
 module.exports.setNetworkOptions = (options) => {
   if (networking.started) {
     throw new Error('can not set network options after interfaces have been started');
