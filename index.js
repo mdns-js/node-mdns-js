@@ -40,6 +40,13 @@ module.exports.excludeInterface = function (iface) {
   }
 };
 
+module.exports.setNetworkOptions = (options) => {
+  if (networking.started) {
+    throw new Error('can not set network options after interfaces have been started');
+  }
+  networking.options = options;
+};
+
 
 /* @borrows Advertisement as Advertisement */
 module.exports.Advertisement = require('./lib/advertisement'); //just for convenience
