@@ -56,6 +56,18 @@ module.exports.listenOnLinkLocalMulticastOnly = () => {
 };
 
 /**
+ * Enables setting the desired address family
+ * @method
+ * @param {string} family - String Enum, either 'IPv4', 'IPv6', 'both' or 'any'
+ */
+module.exports.setAddressFamily = (family) => {
+  if (['IPv4', 'IPv6', 'both', 'any'].indexOf(family) === -1) {
+    throw new Error('invalid network address family option: ' + family + ", must be either 'IPv4', 'IPv6', 'both' or 'any'");
+  }
+  networking.ADDR_FAMILY = family;
+};
+
+/**
  * Enables setting network options between initialization and starting
  * @method
  * @param {object} options - A configuration object describing the desired network options
