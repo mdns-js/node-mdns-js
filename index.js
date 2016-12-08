@@ -55,6 +55,11 @@ module.exports.listenOnLinkLocalMulticastOnly = () => {
   networking.INADDR_ANY = false;
 };
 
+/**
+ * Enables setting network options between initialization and starting
+ * @method
+ * @param {object} options - A configuration object describing the desired network options
+ */
 module.exports.setNetworkOptions = (options) => {
   if (networking.started) {
     throw new Error('can not set network options after interfaces have been started');
