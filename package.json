@@ -21,12 +21,12 @@
     "semver": "~5.1.0"
   },
   "devDependencies": {
-    "code": "*",
+    "code": "^4.0.0",
     "joi": "~7.1.0",
-    "lab": "*"
+    "lab": "^11.2.1"
   },
   "scripts": {
-    "test": "lab --flat --coverage",
+    "test": "lab --flat",
     "lint": "eslint test examples lib index.js",
     "doc": "jsdoc -d .\\doc index.js lib"
   },
