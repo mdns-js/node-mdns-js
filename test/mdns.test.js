@@ -31,13 +31,13 @@ describe('mDNS', function () {
 
   it('should .discover()', {skip: process.env.MDNS_NO_RESPONSE},
     function (done) {
-    browser.once('update', function onUpdate(data) {
-      expect(data).to.include(['interfaceIndex', 'networkInterface',
-        'addresses', 'query']);
-      done();
-    });
+      browser.once('update', function onUpdate(data) {
+        expect(data).to.include(['interfaceIndex', 'networkInterface',
+          'addresses', 'query']);
+        done();
+      });
 
-    setTimeout(browser.discover.bind(browser), 500);
-  });
+      setTimeout(browser.discover.bind(browser), 500);
+    });
 
 });
