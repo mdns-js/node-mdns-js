@@ -22,11 +22,12 @@
   },
   "devDependencies": {
     "code": "^4.0.0",
+    "eslint": "^3.12.2",
     "joi": "~7.1.0",
     "lab": "^11.2.1"
   },
   "scripts": {
-    "test": "lab --flat",
+    "test": "lab --flat && npm run lint",
     "lint": "eslint test examples lib index.js",
     "doc": "jsdoc -d .\\doc index.js lib"
   },
