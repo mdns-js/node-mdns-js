@@ -31,13 +31,61 @@ module.exports.excludeInterface = function (iface) {
   if (networking.started) {
     throw new Error('can not exclude interfaces after start');
   }
-  if (iface === '0.0.0.0') {
+  if (iface === '0.0.0.0' || iface === '::') {
     networking.INADDR_ANY = false;
   }
   else {
     var err = new Error('Not a supported interface');
     err.interface = iface;
   }
+};
+
+/**
+ * Restrict the network socket to only listen on the respective link local multicast addresses
+ * IPv4: 224.0.0.251
+ * IPv6: FF02::FB
+ * instead of binding the port to all receiving local IP addresses (0.0.0.0 / ::).
+ * This is a convenience function to avoid having to manually exclude both address families.
+ * @method
+ */
+module.exports.listenOnLinkLocalMulticastOnly = function () {
+  if (networking.started) {
+    throw new Error('can not exclude interfaces after start');
+  }
+  networking.INADDR_ANY = false;
+};
+
+/**
+ * Enables setting the desired address family
+ * @method
+ * @param {string} family - String Enum, either 'IPv4', 'IPv6', 'both' or 'any'
+ */
+module.exports.setAddressFamily = function (family) {
+  if (['IPv4', 'IPv6', 'both', 'any'].indexOf(family) === -1) {
+    throw new Error('invalid network address family option: ' + family + ", must be either 'IPv4', 'IPv6', 'both' or 'any'");
+  }
+  networking.ADDR_FAMILY = family;
+};
+
+/**
+ * Enables setting network options between initialization and starting
+ * @method
+ * @param {object} options - A configuration object describing the desired network options
+ */
+module.exports.setNetworkOptions = function (options) {
+  if (networking.started) {
+    throw new Error('can not set network options after interfaces have been started');
+  }
+  networking.options = options;
+};
+
+/**
+ * Enables getting network options
+ * @method
+ * @return {object} options - A configuration object describing the desired network options
+ */
+module.exports.getNetworkOptions = function () {
+  return networking.options;
 };
 
 
@@ -64,6 +112,9 @@ module.exports.ServiceType = st.ServiceType;
 
 /** @property {module:ServiceType.makeServiceType} */
 module.exports.makeServiceType = st.makeServiceType;
+
+/** @property */
+module.exports.networking = networking;
 
 /** @function */
 module.exports.tcp = st.protocolHelper('tcp');

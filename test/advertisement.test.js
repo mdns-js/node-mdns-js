@@ -48,17 +48,70 @@ describe('packetfactory', function () {
 
   it('createAdvertisement', function (done) {
     var service = mdns.createAdvertisement(mdns.tcp('_http'), 9876, {
-      name:'hello',
-      txt:{
-        txtvers:'1'
+      name: 'hello',
+      txt: {
+        txtvers: '1'
       }
     });
 
-    expect(service).to.include({port:9876});
-    expect(service.serviceType).to.include({name: 'http', protocol: 'tcp'});
+    expect(service).to.include({ port: 9876 });
+    expect(service.serviceType).to.include({ name: 'http', protocol: 'tcp' });
     expect(service).to.include('options');
-    expect(service.options, 'options').to.include({name: 'hello'});
+    expect(service.options, 'options').to.include({ name: 'hello' });
+
+    done();
+
+  });
+
+  it('should enable setting networking options', function (done) {
+    var service = mdns.createAdvertisement(mdns.tcp('_http'), 9876, {
+      name: 'hello',
+      txt: {
+        txtvers: '1'
+      }
+    });
+
+    expect(mdns.getNetworkOptions()).to.be.empty();
+    mdns.setNetworkOptions({ test: 'test' });
+    expect(mdns.getNetworkOptions()).to.include('test');
+    mdns.setNetworkOptions({});
+    expect(mdns.getNetworkOptions()).to.be.empty();
 
     done();
   });
+
+  it('should enable restricting to linkLocal only addresses', function (done) {
+    var service = mdns.createAdvertisement(mdns.tcp('_http'), 9876, {
+      name: 'hello',
+      txt: {
+        txtvers: '1'
+      }
+    });
+
+    expect(mdns.networking.INADDR_ANY).to.equal(true);
+    mdns.listenOnLinkLocalMulticastOnly();
+    expect(mdns.networking.INADDR_ANY).to.equal(false);
+
+    done();
+  });
+
+  it('should work be able to set address family', function (done) {
+    var service = mdns.createAdvertisement(mdns.tcp('_http'), 9876, {
+      name: 'hello',
+      txt: {
+        txtvers: '1'
+      }
+    });
+
+    expect(mdns.networking.ADDR_FAMILY).to.equal('IPv4');
+    mdns.setAddressFamily('IPv6');
+    expect(mdns.networking.ADDR_FAMILY).to.equal('IPv6');
+    mdns.setAddressFamily('both');
+    expect(mdns.networking.ADDR_FAMILY).to.equal('both');
+    mdns.setAddressFamily('any');
+    expect(mdns.networking.ADDR_FAMILY).to.equal('any');
+
+    done();
+  });
+
 });
