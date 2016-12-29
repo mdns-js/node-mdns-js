@@ -5,7 +5,7 @@ mDNS-js
 
 Pure JavaScript/NodeJS mDNS discovery implementation.
 It's definitely not a full implementation at the current
-state and it will NOT work in the browser. 
+state and it will NOT work in the browser.
 
 The starting inspiration came from
 https://github.com/GoogleChrome/chrome-app-samples/tree/master/mdns-browser
@@ -31,6 +31,7 @@ progress will be slow unless someone is willing to pitch in with
 pull requests, specifications for wanted functions etc.
 Also, as you should avoid to have multiple mDNS stacks on a system this
 might clash with stuff like avahi and bonjour.
+Will try to use semantic versioning.
 
 
 example
@@ -38,13 +39,15 @@ example
 
 ```javascript
 var mdns = require('mdns-js');
-//if you have another mdns daemon running, like avahi or bonjour, uncomment following line
-//mdns.excludeInterface('0.0.0.0');
+//if you just want to bind/listen to a specific interface
+//mdns.setListenTo('192.168.1.10');
+//the default would be the same as
+//mdns.setListenTo('0.0.0.0', '::');
 
 var browser = mdns.createBrowser();
 
 browser.on('ready', function () {
-    browser.discover(); 
+    browser.discover();
 });
 
 browser.on('update', function (data) {
@@ -58,8 +61,8 @@ Please report any issues at https://github.com/mdns-js/node-mdns-js/issues
 
 But please check if there is a similar issue already reported and
 __make a note of which OS__ and OS version you are running.
-There is some issues that turn up only on Windows 8.1 but not in 
-Windows 7 for example. And there are differences between Mac and 
+There is some issues that turn up only on Windows 8.1 but not in
+Windows 7 for example. And there are differences between Mac and
 Windows so... __please__...
 
 Another important thing to know if there is another mdns service
@@ -68,7 +71,7 @@ running on the same machine. This would be for example Bonjour and Avahi.
 
 Debugging
 ---------
-This library is using the [debug](https://github.com/visionmedia/debug) 
+This library is using the [debug](https://github.com/visionmedia/debug)
 module from TJ Holowaychuk and can be used like this.
 
 ```bash
@@ -98,9 +101,9 @@ Please run any existing tests with
 and preferably add more tests.
 
 
-Before creating a pull-request please run 
+Before creating a pull-request please run
 
-    npm run lint 
+    npm run lint
 
 This will run jshint as well as jscs that will do some basic syntax
 and code style checks.

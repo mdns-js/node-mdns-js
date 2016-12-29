@@ -3,9 +3,10 @@ var mdns = require('../');
 
 var TIMEOUT = 5000; //5 seconds
 
-//if you have avahi or bonjour or other mdns service running on the same system
-//you REALLY would like to exlude 0.0.0.0 from the interfaces bound to
-//mdns.excludeInterface('0.0.0.0')
+//Set the interface address to listen to. String or array of strings
+//mdns.setListenTo('192.168.1.10');
+//if undefined it will listen to 0.0.0.0 and :: wich is same as default.
+//mdns.setListenTo();
 
 var browser = mdns.createBrowser(); //defaults to mdns.ServiceType.wildcard
 //var browser = mdns.createBrowser(mdns.tcp('googlecast'));
