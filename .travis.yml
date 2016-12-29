@@ -1,7 +1,12 @@
 language: node_js
+
 sudo: false
+
 os:
   - linux
+  - osx
   
 node_js:
-  - "4.1"
+  - node
+  - 6
+  - 4
