@@ -11,26 +11,50 @@ The starting inspiration came from
 https://github.com/GoogleChrome/chrome-app-samples/tree/master/mdns-browser
 but adapted for node. It's not much left of that now though.
 
-__NEW LOCATION__
-
-This project was moved into it's own organisation. Please update any git remotes you might have pointing here.
-
-    git remote set-url origin https://github.com/mdns-js/node-mdns-js.git
-
 Install by
 
     npm install mdns-js
 
-If you are running node version < 4.1 you will have to use a version of this library that is below
-version 0.5.0
+If you are running node version < 4.1 you will have to use a version of this
+library that is below version 0.5.0
+
+__NEW LOCATION__
+
+This project was moved into it's own organisation. Please update any git
+remotes you might have pointing here.
+
+    git remote set-url origin https://github.com/mdns-js/node-mdns-js.git
+
+
+## Known issues
+IPv6 is not at all much tested but might work on some platforms.
+
+### Linux
+I know there are issues if you try to use a specific IPv4 interface while avahi
+is running.
+
+### Darwin/macOS
+As with linux there are issues (most likely conflicts with bonjour) if you
+try to use a specific IPv4 interface, '0.0.0.0' should work though.
+
+I haven't got IPv6 to work in a good way yet. It will currently throw an error
+saying `IPv6 not yet working` if you try to use it.
+If you wan't to help out fixing that, have a look at lib/networking.js and
+comment out that line throwing the error (~ line 90).
+
+### Windows
+If you are running bonjour (for example if you installed iTunes) you will have
+issues. It might work if you just use a specific interface like '192.168.1.10'
+or whatever your local interface has.
 
 Future
 ------
 It would be great to have a full implementation of mDSN + DNS-SD in pure JS but
 progress will be slow unless someone is willing to pitch in with
 pull requests, specifications for wanted functions etc.
-Also, as you should avoid to have multiple mDNS stacks on a system this
-might clash with stuff like avahi and bonjour.
+Also, as you should avoid to have multiple mDNS stacks on a system since this
+will, in different ways, clash with stuff like avahi and bonjour.
+
 Will try to use semantic versioning.
 
 
@@ -41,8 +65,10 @@ example
 var mdns = require('mdns-js');
 //if you just want to bind/listen to a specific interface
 //mdns.setListenTo('192.168.1.10');
+//just listen on IPv4;
+//mdns.setListenTo('0.0.0.0');
 //the default would be the same as
-//mdns.setListenTo('0.0.0.0', '::');
+//mdns.setListenTo(['0.0.0.0', '::']);
 
 var browser = mdns.createBrowser();
 
@@ -90,9 +116,6 @@ DEBUG=mdns:browser:packet node examples/simple.js
 Contributing
 ------------
 Pull-request will be gladly accepted.
-
-If possible any api should be as close match to the api of node-mdns but
-be pragmatic. Look at issue #5.
 
 Please run any existing tests with
 

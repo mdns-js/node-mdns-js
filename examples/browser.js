@@ -5,6 +5,8 @@ var TIMEOUT = 5000; //5 seconds
 
 //Set the interface address to listen to. String or array of strings
 //mdns.setListenTo('192.168.1.10');
+//To only work on IPv6
+//mdns.setListenTo('::');
 //if undefined it will listen to 0.0.0.0 and :: wich is same as default.
 //mdns.setListenTo();
 
