@@ -1,6 +1,6 @@
 {
   "name": "mdns-js",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "repository": {
     "type": "git",
     "url": "git://github.com/mdns-js/node-mdns-js.git"
@@ -36,7 +36,9 @@
     "email": "peter@birchroad.net"
   },
   "contributors": [
-    "James Sigurðarson <jamiees2@gmail.com> (http://jamessigurdarson.com)"
+    "James Sigurðarson <jamiees2@gmail.com> (http://jamessigurdarson.com)",
+    "David Baldwynn <whitef0x0@users.noreply.github.com>",
+    "Stefan Sauer <ensonic@google.com>"
   ],
   "license": "Apache-2.0",
   "bugs": {
