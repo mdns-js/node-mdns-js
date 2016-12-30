@@ -159,4 +159,13 @@ describe('ServiceType', function () {
     expect(s.subtypes[0], 'subtypes[0]').to.equal('46c20544');
     done();
   });
+
+  it('should handle empty _sub of apple-mobdev', function (done) {
+    //relates to issue #66
+    var s = new ServiceType('_sub._apple-mobdev2._tcp.local');
+    expect(s.name, 'name').to.equal('apple-mobdev2');
+    expect(s.subtypes).to.have.length(1);
+    expect(s.subtypes[0], 'subtypes[0]').to.equal('');
+    done();
+  });
 });

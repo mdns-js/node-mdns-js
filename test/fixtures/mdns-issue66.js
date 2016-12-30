@@ -1,0 +1,15 @@
+{ addresses: [],
+  query: [],
+  type: 
+   [ { name: 'rc',
+       protocol: 'tcp',
+       subtypes: [],
+       description: undefined },
+     { name: 'apple-mobdev2',
+       protocol: 'tcp',
+       subtypes: [],
+       description: undefined },
+     { name: 'apple-mobdev2',
+       protocol: 'tcp',
+       subtypes: [ '' ],
+       description: undefined } ] }
