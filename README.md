@@ -21,8 +21,9 @@ Install by
 
     npm install mdns-js
 
-If you are running node version < 4.1 you will have to use a version of this library that is below
-version 0.5.0
+* If you are running node version < 4.1 you will have to use a version of this 
+  library that is below version 0.5.0
+* If node is < 6.11 you will have to use a version of this library that is below 1.0.0
 
 Future
 ------
