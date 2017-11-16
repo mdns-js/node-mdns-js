@@ -1,12 +1,6 @@
-var Lab = require('lab');
-var lab = exports.lab = Lab.script();
-
-var describe = lab.describe;
-var it = lab.it;
-//var before = lab.before;
-//var after = lab.after;
-var Code = require('code');   // assertion library
-var expect = Code.expect;
+const Lab = require('lab');
+const { describe,  it } = exports.lab = Lab.script();
+const { expect } = require('code');
 
 
 var debug = require('debug')('mdns:test:decoder');
@@ -30,7 +24,7 @@ function testDecodeMessage(binFolder, jsFolder) {
   });
 
   files.forEach(function (file) {
-    it('decode ' + file, function (done) {
+    it('decode ' + file, () => {
       var djsFile = path.join(jsFolder,  file.replace('.bin', '.js'));
       var binFile = path.join(binFolder, file);
 
@@ -45,14 +39,14 @@ function testDecodeMessage(binFolder, jsFolder) {
         helper.equalDeep(dj, obj);
       }
 
-      done();
+
     });//--decode...
   });
 }
 
 describe('decoder', function () {
   describe('decodeSection', function () {
-    it('should thow error on bad section', function (done) {
+    it('should thow error on bad section', () => {
       var p = new DNSPacket();
       var obj = {};
       var throws = function () {
@@ -60,17 +54,17 @@ describe('decoder', function () {
       };
 
       expect(throws).to.throw(Error);
-      done();
+
     });
 
-    it('should thow error on missing obj', function (done) {
+    it('should thow error on missing obj', () => {
       var p = new DNSPacket();
       var throws = function () {
         decoder.decodeSection(p, 'question');
       };
 
       expect(throws).to.throw(Error);
-      done();
+
     });
   });
 
@@ -82,7 +76,7 @@ describe('decoder', function () {
     testDecodeMessage(fixtureFolder, fixtureFolder);
   });
 
-  it('should decode', function (done) {
+  it('should decode', () => {
     var ret;
     var b = helper.readBin(path.join(
       __dirname,
@@ -108,7 +102,7 @@ describe('decoder', function () {
       expect(t.name.length).to.be.above(2);
     });
     debug('ret: %s, obj', ret, obj);
-    done();
+
   });
 });
 

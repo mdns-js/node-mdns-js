@@ -16,15 +16,15 @@
   },
   "main": "index.js",
   "dependencies": {
-    "debug": "^2.1.1",
+    "debug": "^3.1.0",
     "dns-js": "~0.2.1",
-    "semver": "~5.1.0"
+    "semver": "^5.4.1"
   },
   "devDependencies": {
-    "code": "^4.0.0",
-    "eslint": "^3.12.2",
-    "joi": "~7.1.0",
-    "lab": "^11.2.1"
+    "code": "^5.1.2",
+    "eslint": "^4.11.0",
+    "joi": "^13.0.2",
+    "lab": "^15.1.2"
   },
   "scripts": {
     "test": "lab --flat && npm run lint",

@@ -5,3 +5,4 @@ private/
 *.log
 *.sublime-*
 
+package-lock.json

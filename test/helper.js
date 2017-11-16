@@ -2,8 +2,7 @@ var debug = require('debug')('mdns:test:helper');
 var fs = require('fs');
 var vm = require('vm');
 var util = require('util');
-var Code = require('code');   // assertion library
-var expect = Code.expect;
+const { expect } = require('code');
 
 
 exports.createJs = function (obj) {
@@ -87,10 +86,10 @@ var equalDeep = exports.equalDeep = function (expected, actual, path) {
       var prop = Object.getOwnPropertyDescriptor(actual, key);
       if (e instanceof Buffer) {
         expect(a, 'not matching length of ' + dp(np, key))
-        .to.have.length(e.length);
+          .to.have.length(e.length);
 
         expect(a.toString('hex'), 'buffer not same in ' + dp(np, key))
-        .to.equal(e.toString('hex'));
+          .to.equal(e.toString('hex'));
       }
       else if (typeof e === 'object') {
         equalDeep(e, a, dp(np, key));
@@ -111,7 +110,7 @@ var equalDeep = exports.equalDeep = function (expected, actual, path) {
         }
         else {
           expect(a, util.format('wrong length of %s', dp(np, key)))
-          .to.have.length(e.length);
+            .to.have.length(e.length);
           debug('actual: %s, expected: %s', a, e);
         }
       }

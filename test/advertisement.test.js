@@ -1,12 +1,6 @@
-var Lab = require('lab');
-var lab = exports.lab = Lab.script();
-
-var describe = lab.describe;
-var it = lab.it;
-//var before = lab.before;
-//var after = lab.after;
-var Code = require('code');   // assertion library
-var expect = Code.expect;
+const Lab = require('lab');
+const {describe,  it } = exports.lab = Lab.script();
+const { expect } = require('code');
 
 
 var pf = require('../lib/packetfactory');
@@ -28,25 +22,25 @@ function mockAdvertisement() {
 
 describe('packetfactory', function () {
 
-  it('buildQDPacket', function (done) {
+  it('buildQDPacket', () => {
     var context = mockAdvertisement();
     var packet = pf.buildQDPacket.apply(context, []);
     expect(context.alias).to.equal('hello._http._tcp.local');
     expect(packet).to.exist();
-    done();
+
   });
 
 
-  it('buildANPacket', function (done) {
+  it('buildANPacket', () => {
     var context = mockAdvertisement();
     var packet = pf.buildQDPacket.apply(context, []);
     pf.buildANPacket.apply(context, [DNSRecord.TTL]);
     expect(packet).to.exist();
-    done();
+
   });
 
 
-  it('createAdvertisement', function (done) {
+  it('createAdvertisement', () => {
     var service = mdns.createAdvertisement(mdns.tcp('_http'), 9876, {
       name:'hello',
       txt:{
@@ -59,6 +53,5 @@ describe('packetfactory', function () {
     expect(service).to.include('options');
     expect(service.options, 'options').to.include({name: 'hello'});
 
-    done();
   });
 });
