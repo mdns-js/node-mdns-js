@@ -9,5 +9,4 @@ os:
 node_js:
   - node
   - 8
-  - 6
 
