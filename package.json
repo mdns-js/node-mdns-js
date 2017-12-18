@@ -1,6 +1,6 @@
 {
   "name": "mdns-js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "repository": {
     "type": "git",
     "url": "git://github.com/mdns-js/node-mdns-js.git"
@@ -12,13 +12,13 @@
     "zeroconf"
   ],
   "engines": {
-    "node": ">= 8.0.0"
+    "node": ">= 6.0.0"
   },
   "main": "index.js",
   "dependencies": {
-    "debug": "^3.1.0",
+    "debug": "~3.1.0",
     "dns-js": "~0.2.1",
-    "semver": "^5.4.1"
+    "semver": "~5.4.1"
   },
   "devDependencies": {
     "code": "^5.1.2",
@@ -27,8 +27,9 @@
     "lab": "^15.1.2"
   },
   "scripts": {
-    "test": "lab --flat && npm run lint",
-    "lint": "eslint test examples lib index.js",
+    "pretest": "./node_modules/.bin/semver -r '>=8' $(node -v) || (echo 'Use node >= 8.0.0 to run tests.' && exit 1)",
+    "test": "./node_modules/.bin/lab --flat && npm run lint",
+    "lint": "./node_modules/.bin/eslint test examples lib index.js",
     "doc": "jsdoc -d .\\doc index.js lib"
   },
   "author": {
