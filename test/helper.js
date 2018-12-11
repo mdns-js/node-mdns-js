@@ -4,6 +4,28 @@ var vm = require('vm');
 var util = require('util');
 const { expect } = require('code');
 
+const Mdns = require('../lib');
+const Networking = require('../lib/networking');
+const MockNetwork = require('./mock_networking');
+const { DNSPacket } = require('dns-js');
+const packets = require('./packets.json');
+
+exports.createMdns = function () {
+  var options;
+  if (process.env.MOCKNETWORK) {
+    const mockNet = new MockNetwork();
+    mockNet.on('send', () => {
+      var p = DNSPacket.parse(new Buffer.from(packets.responses.services.linux_workstation, 'hex'));
+      mockNet.receive([p]);
+    });
+    options = {networking: mockNet};
+  }
+  else {
+    options = {networking: new Networking()};
+  }
+
+  return new Mdns(options);
+};
 
 exports.createJs = function (obj) {
   return util.inspect(obj, {depth: null});
