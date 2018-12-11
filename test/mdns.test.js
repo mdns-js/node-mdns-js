@@ -1,4 +1,3 @@
-
 const Lab = require('lab');
 const { after, before, describe,  it } = exports.lab = Lab.script();
 const { expect } = require('code');
@@ -40,4 +39,21 @@ describe('mDNS', function () {
     setTimeout(browser.discover.bind(browser), 500);
   });
 
+  it('should close all connection socket on stop', function () {
+    let service = mdns.createAdvertisement(mdns.tcp('_http'), 9876, {
+      name: 'hello',
+      txt: {
+        txtvers: '1'
+      }
+    });
+    service.start();
+    let waitClose = [...service.networking.connections].map(connection => new Promise(resolve => {
+      connection.socket.addListener('close', resolve);
+    }));
+
+    return new Promise((resolve) =>
+      service.stop(resolve)
+    ).then(() => Promise.all(waitClose)
+    );
+  });
 });
