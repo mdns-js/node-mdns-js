@@ -38,6 +38,13 @@ describe('ServiceType', () => {
 
   });
 
+  it('should parse _companion-link._tcp.1082314964.members.btmm.icloud.com', () => {
+    var type = new ServiceType('_companion-link._tcp.1082314964.members.btmm.icloud.com');
+    expect(type).to.include({ protocol: 'tcp', name: 'companion-link',
+      parentdomain: '1082314964.members.btmm.icloud.com' });
+    expect(type.subtypes).to.be.empty();
+  });
+
   it('should tak array as input', () => {
     var type = new ServiceType(['_http', '_tcp']);
     expect(type).to.include({ protocol: 'tcp', name: 'http' });
@@ -81,7 +88,7 @@ describe('ServiceType', () => {
   it('should subtype using _printer._sub', () => {
     var st = new ServiceType('_printer._sub._http._tcp.local');
     expect(JSON.stringify(st)).to.equal('{"name":"http","protocol":"tcp",' +
-      '"subtypes":["_printer"]}');
+      '"subtypes":["_printer"],"parentdomain":"local"}');
     expect(st.toString()).to.equal('_http._tcp,_printer');
 
   });
