@@ -4,5 +4,3 @@ private/
 .vscode/
 *.log
 *.sublime-*
-
-package-lock.json
