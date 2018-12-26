@@ -1,23 +1,23 @@
-var debug = require('debug')('mdns:test:helper');
-var fs = require('fs');
-var vm = require('vm');
-var util = require('util');
+const debug = require('debug')('mdns:test:helper');
+const fs = require('fs');
+const vm = require('vm');
+const util = require('util');
+const path = require('path');
 const { expect } = require('code');
 
 const Mdns = require('../lib');
 const Networking = require('../lib/networking');
 const MockNetwork = require('./mock_networking');
-const { DNSPacket } = require('dns-js');
-const packets = require('./packets.json');
 
-exports.createMdns = function () {
+exports.FIXTUREFOLDER = path.join(__dirname, 'fixtures');
+
+exports.createMdns = function (mockNet) {
   var options;
-  if (process.env.MOCKNETWORK) {
-    const mockNet = new MockNetwork();
-    mockNet.on('send', () => {
-      var p = DNSPacket.parse(new Buffer.from(packets.responses.services.linux_workstation, 'hex'));
-      mockNet.receive([p]);
-    });
+  // if MOCKNETWORK is anything else but 'false' it will be used
+  if (process.env.MOCKNETWORK !== 'false' || mockNet) {
+    if (typeof mockNet === 'undefined') {
+      mockNet = new MockNetwork();
+    }
     options = {networking: mockNet};
   }
   else {
@@ -25,6 +25,10 @@ exports.createMdns = function () {
   }
 
   return new Mdns(options);
+};
+
+exports.createMockNetwork = function () {
+  return new MockNetwork();
 };
 
 exports.createJs = function (obj) {
@@ -43,6 +47,9 @@ exports.writeJs = function (filename, obj) {
 
 
 exports.readBin = function (filename) {
+  if (arguments.length > 1) {
+    filename = path.join(...arguments);
+  }
   return fs.readFileSync(filename);
 };
 

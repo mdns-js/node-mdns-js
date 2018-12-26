@@ -2,10 +2,20 @@ const Lab = require('lab');
 const { after, before, describe,  it } = exports.lab = Lab.script();
 const { expect } = require('code');
 const { createMdns } = require('./helper');
-
+const { DNSPacket } = require('dns-js');
+const packets = require('./packets.json');
 
 const mdns = createMdns();
 
+if (mdns.networking.mock){
+  const net = mdns.networking;
+  net.on('send', () => {
+
+    var p = DNSPacket.parse(new Buffer.from(packets.responses.services.linux_workstation, 'hex'));
+    net.receive([p]);
+
+  });
+}
 
 // var Code = require('code');   // assertion library
 // var expect = Code.expect;
@@ -41,11 +51,10 @@ describe('mDNS', function () {
         resolve();
       });
     });
-
-
   });
 
-  it('should close all connection socket on stop', {timeout: 5000}, () => {
+
+  it('should close all connection socket on stop', {timeout: 15000}, () => {
     let service = mdns.createAdvertisement(mdns.tcp('_http'), 9876, {
       name: 'hello',
       txt: {
@@ -58,8 +67,11 @@ describe('mDNS', function () {
 
     service.start();
 
-    return new Promise((resolve) =>
-      service.stop(resolve)
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        service.stop(resolve);
+      }, 1000);
+    }
     ).then(() => Promise.all(waitClose)
     );
   });

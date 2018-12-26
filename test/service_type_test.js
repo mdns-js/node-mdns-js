@@ -110,16 +110,6 @@ describe('ServiceType', () => {
 
   });
 
-
-  it('should throw on bad protocol', () => {
-    function fn() {
-      new ServiceType('service._http._qwe.local');
-    }
-    expect(fn).to.throw(Error,
-      'protocol must be either "_tcp" or "_udp" but is "_qwe"');
-
-  });
-
   it('should throw on bad protocol', () => {
     var throws = function () {
       new ServiceType('service._http._qwe.local');

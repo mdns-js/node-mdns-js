@@ -8,6 +8,7 @@ const mockRemote = {address: '127.0.0.20', port: '1024'};
 const mockConnection = {networkInterface: 'ethMock'};
 
 const MockNetworking = module.exports = function (options) {
+  this.mock = true; //used to check if mock or real
   this.options = options || {};
   this.created = 0;
   this.connections = [];
@@ -89,7 +90,6 @@ MockNetworking.prototype.removeUsage = function (browser) {
 
 MockNetworking.prototype.receive = function (packets) {
   debug('receive %s packets', packets.length);
-
   this.emit('packets', packets, mockRemote, mockConnection);
 };
 
