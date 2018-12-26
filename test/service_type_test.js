@@ -1,9 +1,9 @@
 const Lab = require('lab');
 const { describe,  it } = exports.lab = Lab.script();
 const { expect } = require('code');
+const { MdnsValidationError } = require('../lib/errors');
 
-
-const ServiceType = require('../lib/service_type').ServiceType;
+const {ServiceType} = require('../lib/st2');
 
 describe('ServiceType', () => {
   it('should parse _http._tcp', ()=> {
@@ -11,7 +11,7 @@ describe('ServiceType', () => {
     expect(1).to.equal(1);
     expect(type).to.include({ protocol: 'tcp', name: 'http' });
     expect(type.subtypes).to.be.empty();
-    expect(type.isWildcard()).to.be.false();
+    expect(type.isWildcard).to.be.false();
     var a = type.toArray();
     expect(a).to.be.instanceof(Array);
 
@@ -26,7 +26,7 @@ describe('ServiceType', () => {
 
   it('should parse service._http._tcp.local', () => {
     var type = new ServiceType('service._http._tcp.local');
-    expect(type).to.include({ protocol: 'tcp', name: 'http' });
+    expect(type).to.include({ protocol: 'tcp', name: 'http', parentdomain: 'local' });
     expect(type.subtypes).to.be.empty();
 
   });
@@ -107,7 +107,6 @@ describe('ServiceType', () => {
     var type = new ServiceType(['_http']);
     expect(type).to.include({ protocol: 'tcp', name: 'http' });
     expect(type.subtypes).to.be.empty();
-
   });
 
   it('should throw on bad protocol', () => {
@@ -159,6 +158,12 @@ describe('ServiceType', () => {
     expect(s.name, 'name').to.equal('apple-mobdev2');
     expect(s.subtypes).to.have.length(1);
     expect(s.subtypes[0], 'subtypes[0]').to.equal('');
+  });
 
+  it('should throw on stange stuff', () => {
+    function fn() {
+      new ServiceType('voucher_com_udemy_tv-auth._tcp.local');
+    }
+    expect(fn).to.throw(MdnsValidationError);
   });
 });
