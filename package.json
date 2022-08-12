@@ -29,7 +29,7 @@
   "scripts": {
     "pretest": "node ./bin/testversion.js",
     "test": "lab --coverage --flat",
-    "lint": "./node_modules/.bin/eslint test examples lib index.js",
+    "lint": "eslint test examples lib index.js",
     "doc": "jsdoc -d .\\doc index.js lib"
   },
   "author": {

@@ -71,7 +71,7 @@ var equalDeep = exports.equalDeep = function (expected, actual, path) {
   }
 
   for (var key in expected) {
-    if (expected.hasOwnProperty(key)) {
+    if (Object.prototype.hasOwnProperty.call(expected, key)) {
       debug('looking at %s in %s', key, path);
       if (actual instanceof Array) {
         expect(key).to.be.most(actual.length - 1);
