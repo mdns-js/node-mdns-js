@@ -2,7 +2,7 @@ var debug = require('debug')('mdns:test:helper');
 var fs = require('fs');
 var vm = require('vm');
 var util = require('util');
-const { expect } = require('code');
+const { expect } = require('@hapi/code');
 
 
 exports.createJs = function (obj) {
