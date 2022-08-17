@@ -17,7 +17,7 @@
   "main": "index.js",
   "dependencies": {
     "debug": "~4.3.4",
-    "dns-js": "~0.3.0",
+    "dns-js": "~0.3.1",
     "semver": "~7.3.7"
   },
   "devDependencies": {
